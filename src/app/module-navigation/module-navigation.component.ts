@@ -218,6 +218,178 @@ export class ModuleNavigationComponent {
 
   showTopMenu: boolean = false;
 
+  subActionBlocks = [
+    {
+      id: 1, root: 1, width: "20%", header: "Grundpflege", list: [
+        "Augenpflege", "Haarpflege / Rasur", "Hautschutz", "Intertrigoprophylaxe", "Mikrobewegungen", "Mund-Nasen-Augenpflege", "Mundpflege", "Nasenpflege", "Pflege, komplett", "Waschung"
+      ]
+    },
+    {
+      id: 2, root: 1, width: "20%", header: "Lagerung, Mobilisierung", list: [
+        "Druckverteilende Systeme", "Lagerung Extremitäten", "Lagerung, Mobilisation"
+      ]
+    },
+    {
+      id: 2, root: 1, width: "20%", header: "Physiotherapie", list: [
+        "Physio - Bettkante",
+        "Physio - Bettkante, Gehtraining und Stehbrett",
+        "Physio - Gehtraining",
+        "Physiotherapie",
+        "Stehbrett"]
+    },
+    {
+      id: 3, root: 1, width: "20%", header: "Luft, Atmung", lits: [
+        "Absaugen",
+        "Absaugen MNR",
+        "Absaugen, endotracheal",
+        "Absaugen, transglottisch",
+        "Spontanatmungsversuch"
+      ]
+    },
+    {
+      id: 4, root: 1, width: "20%", header: "Systemwechsel", lits: [
+        "Katheter Neuanlage", " Systemwechsel - Atmung und Beatmung", "Systemwechsel - Infusion und ent. Ernährung",
+        "Systemwechsel - komplett", "Systemwechsel - Kompression", "Systemwechsel Spülsysteme", "Systemwechsel-Drucksysteme", " Wunden Neuanlage"
+      ]
+    },
+    {
+      id: 5, root: 1, width: "20%", header: "Ein- und Ausfuhr", list: ["Erbrechen / Übelkeit", "Erbrechen, Stuhl und Urin", "Essen", "Essen und Trinken", "Gesamte Ausfuhr Katheter eintragen", "Logopädie Behandlungsempfehlung", "Schluckversuch",
+        "Spontanurin", "Stuhlgang", "Trinken"]
+    },
+    {
+      id: 6, root: 3, width: "20%",
+      header: "Validierung", list: ["BZ - Stix", "Validation Beatmung", "Validation BGA", "Validation Dialyse", "Validation ECMO", "Validation Größe und Gewicht", "Validation NMT - Monitoring", "Validation Vitalwerte", "Validation Vitalwerte AWR"]
+    },
+    {
+      id: 7, root: 3, width: "20%", header: "Kontrollen", lits: ["ACT Kontrolle",
+        "Antrittskontrolle",
+        "AWR Beginn (das hier bitte zuerst ausfüllen)",
+        "AWR Check (nicht Verlegung)",
+        "AWR Check vor Verlegung",
+        "Check Ablauf Ventrikeldrainage",
+        "CK/ CK-MB Kontrolle",
+        "DMS Kontrolle (auch Druckverband/Schleuse)",
+        "Lappenkontrolle",
+        "Orientierung",
+        "Pupillenkontrolle",
+        "Shuntkontrolle",
+        "Sonstige Kontrollen",]
+    },
+    {
+      id: 8, root: 3, width: "20%", header: "Scores Braden-Skala", lits: ["GlasgowComaScale",
+        "Glasgow-Coma-Scale mit Pupillenkontrolle",
+        "NIHSSplus",
+        "Pflegescores (Braden, RASS etc)",
+        "RASS und CAM-ICU",
+        "Schmerzen (NRS, BPS)"]
+    },
+    {
+      id: 9, root: 3, width: "20%", header: "Laborabnahmen etc.", lits: ["Abstrich VRE/MRSA",
+        "BGA Abnahme",
+        "Bitte Troponin-Kontrolle abnehmen",
+        "EKG",
+        "Info:",
+        "Laborabnahme",
+        "Liquorlaborabnahme",
+        "Medikamentenspiegelabnahme",]
+    },
+    {
+      id: 10, root: 3, width: "20%", header: "Sonstiges Anaconda-Validierung", lits: ["Anleitung / Schulung",
+        "Aufnahme, pflegerisch",
+        "Diagnosen",
+        "Dokumentation verworfenes BTM",
+        "Elternbesuche",
+        "Erwärmung / Kühlung",
+        "Fixierung",
+        "Katheter Dokumentation",
+        "Krampfanfall",
+        "Präsenz",
+        "Soziale Interaktion",
+        "Spezielle Pflegetechniken",
+        "Test Dokumentation SR",
+        "Wertsachenprotokoll",
+        "Wunden Dokumentation"]
+    },
+    {
+      id: 11, root: 4, width: "20%", header: "Grundpflege", lits: ["Augenpflege",
+        "Haarpflege / Rasur",
+        "Hautschutz",
+        "Intertrigoprophylaxe",
+        "Mikrobewegungen",
+        "Mund-Nasen-Augenpflege",
+        "Mundpflege",
+        "Nasenpflege",
+        "Pflege, komplett",
+        "Waschung"]
+    },
+    {
+      id: 12, root: 4, width: "20%", header: "Lagerung, Mobilisierung", lits: []
+    },
+    {
+      id: 13, root: 2, width: "12.5%", header: "Maßnahmen Atemweg", lits: ["Anordnung Weaning", "Beilufttest", "Einlungenventilation", "Extubation",
+        "Intubation", "Larynxmaske", "NIV-Therapie Anordnung"]
+    },
+    {
+      id: 14, root: 2, width: "12.5%", header: "Maßnahmen Extrakorporaleverfahren", lits: ["Dialyse", "ECMO", "Visite Stroke Unit"]
+    },
+    {
+      id: 15, root: 2, width: "12.5%", header: "Körperliche Untersuchung", lits: ["Abdomen",
+        "Allgemein (Hautzustand etc.)",
+        "Herz",
+        "Körperl. Untersuchung",
+        "Krampfanfall Myoklonien",
+        "Lunge",
+        "Neurologie",
+        "Neurologie Augen",
+        "Pulsstatus",
+        "Schmerz",
+        "Vigilanz"]
+    },
+    {
+      id: 16, root: 2, width: "12.5%", header: "Diagnostik auf Station", lits: ["AKI Risk Score",
+        "Bronchoskopie",
+        "Diagnostische Laryngoskopie",
+        "EEG",
+        "EKG",
+        "Elektrophysiologische Untersuchung",
+        "Endoskopie",
+        "OP auf Station",
+        "Röntgen",
+        "Sonographie"]
+    },
+    {
+      id: 17, root: 2, width: "12.5%", header: "Diagnostik außerhalb der Station", lits: ["Angiographie",
+        "Bronchoskopie (AUSSERHALB der Station)",
+        "CT",
+        "Elektrophysiologische Untersuchung",
+        "Endoskopie",
+        "Kardiologische Intervention",
+        "MRT",
+        "OP",
+        "Röntgen (außerhalb der Station)"]
+    },
+    {
+      id: 18, root: 2, width: "12.5%", header: "Maßnahmen Extrakorporaleverfahren", lits: ["Diaasdasdasdlyse", "ECMasdadO", "Visite Sasdasdasdtroke Unit"]
+    },
+    {
+      id: 19, root: 2, width: "12.5%", header: "Maßnahmen Extrakorporaleverfahren", lits: ["Dialyse", "ECsadsdsaMO", "Visiteasdads Stroke Unit"]
+    },
+    {
+      id: 12, root: 2, width: "12.5%", header: "Maßnahmen Extrakorporaleverfahren", lits: ["Diasdadadsadadalyse", "ECMO", "Visite Stroke Unit"]
+    },
+  ]
+
+  actions = [
+    { id: 1, label: "Pflege Ausführen", },
+    { id: 2, label: "Pflege Verschreiben", },
+    { id: 3, label: "Arzt Ausführen", },
+    { id: 4, label: "Arzt Verschreiben", },
+    { id: 5, label: "Medikation verschreiben", }
+  ]
+
+
+  activeAction: number = -1;
+
   constructor() { }
 
   selectMenuItem(item: any, event: any) {

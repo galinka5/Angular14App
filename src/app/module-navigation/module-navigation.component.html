@@ -101,10 +101,39 @@
       </div>
     </div>
   </div>
-  <!---->
+  <!-- ACTION LINE -->
   <div class="navigation-top-actionline-container">
+    <div
+      class="navigation-top-action-button"
+      *ngFor="let action of actions"
+      (click)="activeAction = action.id"
+    >
+      {{ action.id }} {{ action.label }}
+    </div>
     <!---->
   </div>
+  <div class="navigation-top-action-button-container">
+    <div
+      *ngFor="let saBlock of subActionBlocks"
+      class="navigation-top-action-container-outerDiv"
+      [ngClass]="{ hidden: activeAction !== saBlock.root }"
+      [style]="'flex: 1 1 ' + saBlock.width"
+    >
+      <div class="navigation-top-action-button-container-header">
+        {{ saBlock.root }} * {{ saBlock.header }}
+      </div>
+      <div
+        class="navigation-top-action-clickable"
+        data-qcaretimepickerelement="1"
+        *ngFor="let item of saBlock.list"
+      >
+        {{ item }}
+      </div>
+    </div>
+    <!---->
+  </div>
+  <!---->
+
   <!---->
 </div>
 
