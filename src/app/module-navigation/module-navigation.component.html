@@ -1,0 +1,163 @@
+<div class="navigation-top">
+  <div class="navigation-top-general" (click)="showTopMenu = true">
+    <!-- PATIENT DETAILS BLOCK -->
+    <div class="navigation-top-patientInfo navigation-tooltip clickable">
+      <span class="patient-name">{{ patientName }}</span>
+      <span>{{ patientData }}</span>
+      <div class="tooltip-content"></div>
+    </div>
+    <!-- ALERT BLOCK -->
+    <div class="navigation-top-additionalinfo">
+      <div *ngFor="let alert of alerts" class="additionalinfo-letterDiv">
+        <div
+          class="additionalinfo-letter navigation-tooltip"
+          [style]="'background-color:' + alert.color"
+        >
+          {{ alert.label }}
+          <div class="navigation-additionalinfo tooltip-content">
+            <div
+              *ngFor="let subitem of alert.subitems"
+              [ngClass]="{
+                'navigation-additionalinfo-header': subitem.additionalHeader
+              }"
+            >
+              {{ subitem.label }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----------------->
+
+    <!----------------->
+    <!-- CALENDAR BLOCK -->
+    <div class="navigation-top-timeselector">
+      <div class="navigation-top-timeselector-block">
+        <div class="navigation-top-changeDate">&lt;</div>
+        <div
+          data-qcaretimepickerelement="1"
+          class="navigation-top-selectedDate"
+        >
+          18.09.2024
+        </div>
+        <div class="navigation-top-changeDate">&gt;</div>
+      </div>
+
+      <div class="navigation-top-timeselector-block">
+        <div class="navigation-top-dateSelector navigation-top-selected">1</div>
+        <div class="navigation-top-dateSelector">3</div>
+        <div class="navigation-top-dateSelector">5</div>
+        <div class="navigation-top-dateSelector">7</div>
+        <div class="navigation-top-dateSelector">12</div>
+        <div class="navigation-top-dateSelector">24</div>
+      </div>
+
+      <div class="navigation-top-timeselector-block">
+        <div class="navigation-top-dateSelector">2h</div>
+        <div class="navigation-top-dateSelector">6h</div>
+        <div class="navigation-top-dateSelector">12h</div>
+      </div>
+    </div>
+    <!------------------------------>
+  </div>
+  <!---------- TOP menu (hidden for mode 2)---------->
+  <div
+    class="navigation-top-link-container"
+    *ngIf="menuMode != 2 && showTopMenu"
+  >
+    <!-- top level menu hidden for mode 1 and 2 -->
+    <div class="navigation-top-link-row" *ngIf="menuMode == 0">
+      <div
+        *ngFor="let item of mainMenu"
+        class="navigation-top-link-item"
+        [ngClass]="{
+          'navigation-top-link': !item.subitems,
+          'navigation-top-selected': currentItem?.id.indexOf(item.id) === 0
+        }"
+        (click)="selectMenuItem(item, null)"
+      >
+        {{ item.label }}
+        <span *ngIf="item.subitems" class="expand-symbol">‹</span>
+      </div>
+    </div>
+    <div
+      *ngFor="let smenu of subMenus"
+      class="navigation-top-link-row"
+      [ngClass]="{
+        hidden: currentItem?.id.indexOf(smenu.root) !== 0
+      }"
+    >
+      <div
+        *ngFor="let item of smenu.items"
+        class="navigation-top-link-item"
+        [ngClass]="{
+          'navigation-top-link': !item.subitems,
+          'navigation-top-selected': currentItem?.id.indexOf(item.id) === 0
+        }"
+        (click)="selectMenuItem(item, null)"
+      >
+        {{ item.label }}
+        <span *ngIf="item.subitems" class="expand-symbol">‹</span>
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div class="navigation-top-actionline-container">
+    <!---->
+  </div>
+  <!---->
+</div>
+
+<!--- LEFT SIDEBAR (hidden for mode 0)-->
+<div
+  class="navigation-left"
+  *ngIf="menuMode != 0"
+  [ngClass]="{ expanded: expanded }"
+>
+  <!--- FIRST LEVEL NAVIGATION (for mode 1 and 2)-->
+  <div class="navigation-left_item navigation-left-limited first-level">
+    <div
+      *ngFor="let item of mainMenu"
+      (click)="selectMenuItem(item, $event)"
+      class="navigation-left_item_unit"
+      [ngClass]="{
+        'navigation-left-selected': currentItem?.id.indexOf(item.id) === 0
+      }"
+    >
+      <img
+        class="navigation-left_img"
+        [src]="'../../../assets/Images/' + item.icon + '.png'"
+        [title]="item.label"
+      />
+      <span>{{ item.label }}</span>
+      <span *ngIf="item.subitems" class="expand-symbol">›</span>
+    </div>
+  </div>
+  <!--- NEXT LEVEL NAVIGATION (for mode 2)-->
+  <div
+    *ngFor="let smenu of subMenus"
+    class="navigation-left_item"
+    [ngClass]="{
+      hidden:
+        currentItem?.id.indexOf(smenu.root) !== 0 || !expanded || menuMode !== 2
+    }"
+  >
+    <div
+      *ngFor="let item of smenu.items"
+      class="navigation-left_item_unit"
+      [ngClass]="{
+        'navigation-top-link': !item.subitems,
+        'navigation-left-selected': currentItem?.id.indexOf(item.id) === 0
+      }"
+      (click)="selectMenuItem(item, $event)"
+    >
+      <img
+        class="navigation-left_img"
+        [src]="'../../../assets/Images/' + item.icon + '.png'"
+        [title]="item.label"
+      />
+      <span>{{ item.label }}</span>
+      <span *ngIf="item.subitems" class="expand-symbol">›</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+.top-bar {
+    font-family: Open Sans, sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #272F4E;
+    color: #fff;
+    z-index: 99999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar button{
+  padding: 4px 20px;
+  font-size: 16px;
+}
+
+#QCare_HotscreenContainer {
+    padding-top: 30px;
+}
+
+#QCare_HotscreenContainer.left-menu{
+    padding-left: 50px;
+}
+
+.QCare_Navigation_OuterContainer {
+    position: sticky;
+    top: 30px;
+    left: 0;
+    z-index: 10000;
+}
