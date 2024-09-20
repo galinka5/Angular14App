@@ -1,9 +1,33 @@
 <div class="navigation-top">
-  <div class="navigation-top-general" (click)="showTopMenu = true">
+  <div class="navigation-top-general">
+    <div class="navigation-top-menu-btn clickable" (click)="showTopMenu = true">
+      <svg
+        width="46"
+        height="46"
+        viewBox="0 0 46 46"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.07227 4.30762H41.5527V12.7337H4.07227V4.30762Z"
+          fill="white"
+        />
+        <path
+          d="M4.07227 18.3701H41.5527V26.7962H4.07227V18.3701Z"
+          fill="white"
+        />
+        <path
+          d="M4.07227 32.4326H41.5527V40.8587H4.07227V32.4326Z"
+          fill="white"
+        />
+      </svg>
+    </div>
     <!-- PATIENT DETAILS BLOCK -->
     <div class="navigation-top-patientInfo navigation-tooltip clickable">
       <span class="patient-name">{{ patientName }}</span>
-      <span>{{ patientData }}</span>
+      <div class="additional-data">
+        <span *ngFor="let pd of patientData">{{ pd }}</span>
+      </div>
       <div class="tooltip-content"></div>
     </div>
     <!-- ALERT BLOCK -->

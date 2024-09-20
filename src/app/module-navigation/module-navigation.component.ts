@@ -11,7 +11,7 @@ export class ModuleNavigationComponent {
   @Input() expanded: boolean = false;
 
   patientName: string = 'BOIREC Jean';
-  patientData = 'depuis: 12.12.2023 *13.11.1970 LIT 07';
+  patientData = ['12.12.2023', '*13.11.1970', 'LIT 07'];
 
   alerts = [
     {
