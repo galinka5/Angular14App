@@ -1,5 +1,17 @@
 import { Component, Input } from '@angular/core';
 
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+
+
+interface MenuNode {
+  label: string;
+  id: string;
+  children?: MenuNode[];
+  icon?: string;
+}
+
+
 @Component({
   selector: 'app-module-navigation',
   templateUrl: './module-navigation.component.html',
@@ -211,7 +223,92 @@ export class ModuleNavigationComponent {
         { id: "0-2-4-5", label: "Pupillométrie", icon: 'Patient' }
       ]
     }
-  ]
+  ];
+
+
+  treeLeftMenu: MenuNode[] = [
+    {
+      id: '0-1', label: "Occupation des lits", icon: 'Home'
+    },
+    {
+      id: '0-2', label: "PRESCRIPTIONS", icon: 'Document', children: [
+        { id: '0-2-1', label: "Prescription", icon: 'Patient' },
+        {
+          id: "0-2-2", label: "Focus Médicaments", icon: 'Patient', children: [
+            { id: '0-2-2-1', label: "Tous les médicaments", icon: 'Patient' },
+            { id: "0-2-2-2", label: "Injections continues", icon: 'Patient' },
+            { id: "0-2-2-3", label: "Injections discontinues", icon: 'Patient' },
+            { id: "0-2-2-4", label: "Perfusions solutés", icon: 'Patient' },
+            { id: "0-2-2-5", label: "ATB", icon: 'Patient' }
+          ]
+        },
+        { id: "0-2-3", label: "Focus surveillances et soins", icon: 'Patient' },
+        {
+          id: "0-2-4", label: "Pancarte de surveillance", icon: 'Patient', children: [
+            { id: '0-2-4-1', label: "Pancarte de surveillance (GHT77)", icon: 'Patient' },
+            { id: "0-2-4-2", label: "Drains", icon: 'Patient' },
+            { id: "0-2-4-3", label: "Vérifications", icon: 'Patient' },
+            { id: "0-2-4-4", label: "Dialyse/ECMO", icon: 'Patient' },
+            { id: "0-2-4-5", label: "Pupillométrie", icon: 'Patient' }
+          ]
+        },
+        { id: "0-2-5", label: "Plan de soins (GHT77)", icon: 'Patient' }
+      ]
+    },
+    {
+      id: '0-3', label: "VUES DE SYNTHESE", icon: 'Lab', children: [
+        { id: '0-3-1', label: "General", icon: 'Patient' },
+        { id: "0-3-2", label: "Cardiovasculaire", icon: 'Patient' },
+        { id: "0-3-3", label: "Pulmonologie", icon: 'Patient' },
+        { id: "0-3-4", label: "Neurologie", icon: 'Patient' },
+        { id: "0-3-5", label: "Néphrologie", icon: 'Patient' }]
+    },
+    {
+      id: '0-4', label: "RESULTATS LABO", icon: 'Table', children: [
+        { id: '0-4-1', label: "Laboratoire tout", icon: 'Patient' },
+        { id: "0-4-2", label: "Gaz du sang", icon: 'Patient' },
+        { id: "0-4-3", label: "Labo Hématologie", icon: 'Patient' },
+        { id: "0-4-4", label: "Labo Sérologie", icon: 'Patient' },
+        { id: "0-4-5", label: "Microbiologie", icon: 'Patient' }]
+    },
+    {
+      id: '0-5', label: "EQUIPEMENTS ET PLAIES", icon: 'Prescription_List'
+    },
+    {
+      id: '0-6', label: "BILAN ENTREES-SORTIES", icon: 'Eye'
+    },
+    {
+      id: '0-7', label: "TRANSMISSIONS", icon: 'Transmission', children: [
+        { id: '1-7-1', label: "Transmissions libres", icon: 'Patient' },
+        { id: "1-7-2", label: "Transmissions ciblées", icon: 'Patient' },
+        { id: "1-7-3", label: "Observations IDE", icon: 'Patient' },
+        { id: "1-7-4", label: "Fiche de liaison", icon: 'Patient' }]
+    },
+    {
+      id: '0-8', label: "INTERVENANTS EXTERNES", icon: 'Tools'
+    },
+    {
+      id: '1-9', label: "Administratif", icon: 'Bubbles'
+    },
+    {
+      id: '0-10', label: "DOSSIER MEDICAL", icon: 'Open_Folder', children: [
+        { id: '0-10-1', label: "Examens entrée", icon: 'Patient' },
+        { id: "0-10-2", label: "Profil médical", icon: 'Patient' },
+        { id: "0-10-3", label: "Observations quotidiennes", icon: 'Patient' },
+        { id: "0-10-4", label: "Suivi des observations", icon: 'Patient' },
+        { id: "0-10-5", label: "SOFA", icon: 'Patient' },
+        { id: "0-10-6", label: "CR Hospitalisation", icon: 'Patient' },
+      ]
+    },
+    {
+      id: '0-11', label: "EVOLUCARE", icon: 'Users'
+
+    },
+    {
+      id: '0-12', label: "OPROOM", icon: 'Patient'
+    },
+
+  ];
 
 
   currentItem: any;
@@ -390,7 +487,19 @@ export class ModuleNavigationComponent {
 
   activeAction: number = -1;
 
-  constructor() { }
+  activeNode: any = null;
+
+
+
+  treeControl = new NestedTreeControl<MenuNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<MenuNode>();
+
+  constructor() {
+    this.dataSource.data = this.treeLeftMenu;
+
+  }
+
+  hasChild = (_: number, node: MenuNode) => !!node.children && node.children.length > 0;
 
   selectMenuItem(item: any, event: any) {
     event?.stopPropagation();
@@ -402,5 +511,18 @@ export class ModuleNavigationComponent {
       this.expanded = false;
     }
     console.log(this.currentItem);
+  }
+
+  expandNode(node: any) {
+    return;
+    if (this.activeNode && this.activeNode.children.indexOf(node) < 0) {
+      this.treeControl.collapse(this.activeNode);
+    }
+    this.activeNode = node;
+    console.log(node);
+    console.log(this.treeControl);
+    //this.treeControl.collapseAll();
+    //this.treeControl.expand(node);
+
   }
 }

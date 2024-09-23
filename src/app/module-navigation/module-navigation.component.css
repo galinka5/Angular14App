@@ -194,7 +194,7 @@
     display: flex;
     flex-direction: column;
     overflow: auto;
-    padding: 0 0.5em;
+    margin: 0 0.5em;
 }
 
 .navigation-top-link-row {
@@ -204,18 +204,19 @@
 }
 
 .navigation-top-link-container{
-  counter-reset: count -1;
+ border-radius: 8px;
 }
 
-.navigation-top-link-container .navigation-top-link-row:not(.hidden){
+.navigation-top-link-container .navigation-top-link-row:not(.hidden) .navigation-top-link-item{
   background-color: #DDDDDD;
+  margin: 1px 0;
 }
 
-.navigation-top-link-container  .navigation-top-link-row:not(.hidden):nth-child(1){
+.navigation-top-link-container  .navigation-top-link-row:not(.hidden):nth-child(1) .navigation-top-link-item{
   background-color: #FFFAFA;
 }
 
-.navigation-top-link-container .navigation-top-link-row:not(.hidden)+ .navigation-top-link-row:not(.hidden){
+.navigation-top-link-container .navigation-top-link-row:not(.hidden)+ .navigation-top-link-row:not(.hidden) .navigation-top-link-item{
   background-color: #F2F2F2;
 }
 
@@ -244,7 +245,7 @@
 
 .navigation-top-link-container .navigation-top-selected{
     color:#fff;
-    background-color: #272F4E;
+    background-color: #272F4E!important;
 }
 
 .navigation-top-link-container .navigation-top-selected.navigation-top-link-item:not(.navigation-top-link):after{
@@ -307,7 +308,8 @@
   color:#525252;
   font-size: 0.875em;
   font-weight: 400;
-  max-width: 25vw;
+  max-width: max(500px, 25vw);
+  padding-right: 0.5em;
 }
 
 
@@ -395,3 +397,50 @@ filter: invert(14%) sepia(9%) saturate(3668%) hue-rotate(190deg) brightness(98%)
   padding: 0.5em;
   color: #5B5B5B;
 }
+
+/**  TREE MATERIAL MENU    */
+
+.menu-tree-invisible {
+  display: none;
+}
+
+mat-tree{
+    width: 50px;
+    overflow: hidden;
+}
+
+mat-tree:hover{
+    width: auto;
+    overflow: visible;
+}
+
+
+.menu-tree ul,
+.menu-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+/*
+ * This padding sets alignment of the nested nodes.
+ */
+.menu-tree .mat-nested-tree-node div[role=group] {
+  padding-left: 50px;
+}
+
+.menu-tree .navigation-left_img{
+     padding: 8px;
+    width: 50px;
+}
+
+.menu-tree  button{
+  background: transparent;
+  border: none;
+}
+
+.menu-tree  button svg{
+  width: 12px;
+  height: 12px;
+}
+

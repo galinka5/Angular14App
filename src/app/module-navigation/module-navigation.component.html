@@ -162,12 +162,12 @@
 </div>
 
 <!--- LEFT SIDEBAR (hidden for mode 0)-->
-<div
+<!--<div
   class="navigation-left"
   *ngIf="menuMode != 0"
   [ngClass]="{ expanded: expanded }"
 >
-  <!--- FIRST LEVEL NAVIGATION (for mode 1 and 2)-->
+
   <div class="navigation-left_item navigation-left-limited first-level">
     <div
       *ngFor="let item of mainMenu"
@@ -186,7 +186,7 @@
       <span *ngIf="item.subitems" class="expand-symbol">›</span>
     </div>
   </div>
-  <!--- NEXT LEVEL NAVIGATION (for mode 2)-->
+
   <div
     *ngFor="let smenu of subMenus"
     class="navigation-left_item"
@@ -213,4 +213,66 @@
       <span *ngIf="item.subitems" class="expand-symbol">›</span>
     </div>
   </div>
+</div>-->
+
+<div
+  class="navigation-left"
+  *ngIf="menuMode != 0"
+  [ngClass]="{ expanded: expanded }"
+>
+  <mat-tree
+    [dataSource]="dataSource"
+    [treeControl]="treeControl"
+    class="menu-tree"
+  >
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+      <div class="navigation-left_item_unit">
+        <img
+          class="navigation-left_img"
+          [src]="'../../../assets/Images/' + node.icon + '.png'"
+          [title]="node.label"
+        />
+        <span>{{ node.label }}</span>
+      </div>
+    </mat-tree-node>
+
+    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+      <div class="mat-tree-node navigation-left_item_unit" matTreeNodeToggle>
+        <img
+          class="navigation-left_img"
+          [src]="'../../../assets/Images/' + node.icon + '.png'"
+          [title]="node.label"
+        />
+
+        <span> {{ node.label }}</span>
+        <button mat-icon-button [attr.aria-label]="'Toggle ' + node.label">
+          <span
+            [ngClass]="{ expand_more: treeControl.isExpanded(node) }"
+            (click)="expandNode(node)"
+          >
+            <svg
+              width="7"
+              height="10"
+              viewBox="0 0 7 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L5 5L1 9"
+                stroke="#757575"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        [class.menu-tree-invisible]="!treeControl.isExpanded(node)"
+        role="group"
+      >
+        <ng-container matTreeNodeOutlet></ng-container>
+      </div>
+    </mat-nested-tree-node>
+  </mat-tree>
 </div>
