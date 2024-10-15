@@ -1,88 +1,95 @@
 <div class="navigation-top">
   <div class="navigation-top-general">
-    <div class="navigation-top-menu-btn clickable" (click)="showTopMenu = true">
-      <svg
-        width="46"
-        height="46"
-        viewBox="0 0 46 46"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    <div class="navigation-top-block-1">
+      <div
+        class="navigation-top-menu-btn clickable"
+        (click)="showTopMenu = true"
       >
-        <path
-          d="M4.07227 4.30762H41.5527V12.7337H4.07227V4.30762Z"
-          fill="white"
-        />
-        <path
-          d="M4.07227 18.3701H41.5527V26.7962H4.07227V18.3701Z"
-          fill="white"
-        />
-        <path
-          d="M4.07227 32.4326H41.5527V40.8587H4.07227V32.4326Z"
-          fill="white"
-        />
-      </svg>
-    </div>
-    <!-- PATIENT DETAILS BLOCK -->
-    <div class="navigation-top-patientInfo navigation-tooltip clickable">
-      <span class="patient-name">{{ patientName }}</span>
-      <div class="additional-data">
-        <span *ngFor="let pd of patientData">{{ pd }}</span>
-      </div>
-      <div class="tooltip-content"></div>
-    </div>
-    <!-- ALERT BLOCK -->
-    <div class="navigation-top-additionalinfo">
-      <div *ngFor="let alert of alerts" class="additionalinfo-letterDiv">
-        <div
-          class="additionalinfo-letter navigation-tooltip"
-          [style]="'background-color:' + alert.color"
+        <svg
+          width="46"
+          height="46"
+          viewBox="0 0 46 46"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          {{ alert.label }}
-          <div class="navigation-additionalinfo tooltip-content">
-            <div
-              *ngFor="let subitem of alert.subitems"
-              [ngClass]="{
-                'navigation-additionalinfo-header': subitem.additionalHeader
-              }"
-            >
-              {{ subitem.label }}
+          <path
+            d="M4.07227 4.30762H41.5527V12.7337H4.07227V4.30762Z"
+            fill="white"
+          />
+          <path
+            d="M4.07227 18.3701H41.5527V26.7962H4.07227V18.3701Z"
+            fill="white"
+          />
+          <path
+            d="M4.07227 32.4326H41.5527V40.8587H4.07227V32.4326Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+      <!-- PATIENT DETAILS BLOCK -->
+      <div class="navigation-top-patientInfo navigation-tooltip clickable">
+        <span class="patient-name">{{ patientName }}</span>
+        <div class="additional-data">
+          <span *ngFor="let pd of patientData">{{ pd }}</span>
+        </div>
+        <div class="tooltip-content"></div>
+      </div>
+      <!-- ALERT BLOCK -->
+      <div class="navigation-top-additionalinfo">
+        <div *ngFor="let alert of alerts" class="additionalinfo-letterDiv">
+          <div
+            class="additionalinfo-letter navigation-tooltip"
+            [style]="'background-color:' + alert.color"
+          >
+            {{ alert.label }}
+            <div class="navigation-additionalinfo tooltip-content">
+              <div
+                *ngFor="let subitem of alert.subitems"
+                [ngClass]="{
+                  'navigation-additionalinfo-header': subitem.additionalHeader
+                }"
+              >
+                {{ subitem.label }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!----------------->
+      <!----------------->
 
-    <!----------------->
-    <!-- CALENDAR BLOCK -->
-    <div class="navigation-top-timeselector">
-      <div class="navigation-top-timeselector-block">
-        <div class="navigation-top-changeDate">&lt;</div>
-        <div
-          data-qcaretimepickerelement="1"
-          class="navigation-top-selectedDate"
-        >
-          18.09.2024
+      <!----------------->
+      <!-- CALENDAR BLOCK -->
+      <div class="navigation-top-timeselector">
+        <div class="navigation-top-timeselector-block">
+          <div class="navigation-top-changeDate">&lt;</div>
+          <div
+            data-qcaretimepickerelement="1"
+            class="navigation-top-selectedDate"
+          >
+            18.09.2024
+          </div>
+          <div class="navigation-top-changeDate">&gt;</div>
         </div>
-        <div class="navigation-top-changeDate">&gt;</div>
-      </div>
 
-      <div class="navigation-top-timeselector-block">
-        <div class="navigation-top-dateSelector navigation-top-selected">1</div>
-        <div class="navigation-top-dateSelector">3</div>
-        <div class="navigation-top-dateSelector">5</div>
-        <div class="navigation-top-dateSelector">7</div>
-        <div class="navigation-top-dateSelector">12</div>
-        <div class="navigation-top-dateSelector">24</div>
-      </div>
+        <div class="navigation-top-timeselector-block">
+          <div class="navigation-top-dateSelector navigation-top-selected">
+            1
+          </div>
+          <div class="navigation-top-dateSelector">3</div>
+          <div class="navigation-top-dateSelector">5</div>
+          <div class="navigation-top-dateSelector">7</div>
+          <div class="navigation-top-dateSelector">12</div>
+          <div class="navigation-top-dateSelector">24</div>
+        </div>
 
-      <div class="navigation-top-timeselector-block">
-        <div class="navigation-top-dateSelector">2h</div>
-        <div class="navigation-top-dateSelector">6h</div>
-        <div class="navigation-top-dateSelector">12h</div>
+        <div class="navigation-top-timeselector-block">
+          <div class="navigation-top-dateSelector">2h</div>
+          <div class="navigation-top-dateSelector">6h</div>
+          <div class="navigation-top-dateSelector">12h</div>
+        </div>
       </div>
+      <!------------------------------>
     </div>
-    <!------------------------------>
   </div>
   <!---------- TOP menu (hidden for mode 2)---------->
   <div
@@ -162,12 +169,11 @@
 </div>
 
 <!--- LEFT SIDEBAR (hidden for mode 0)-->
-<!--<div
+<div
   class="navigation-left"
   *ngIf="menuMode != 0"
   [ngClass]="{ expanded: expanded }"
 >
-
   <div class="navigation-left_item navigation-left-limited first-level">
     <div
       *ngFor="let item of mainMenu"
@@ -183,7 +189,7 @@
         [title]="item.label"
       />
       <span>{{ item.label }}</span>
-      <span *ngIf="item.subitems" class="expand-symbol">›</span>
+      <span *ngIf="item.subitems" class="expand-symbol"></span>
     </div>
   </div>
 
@@ -210,69 +216,7 @@
         [title]="item.label"
       />
       <span>{{ item.label }}</span>
-      <span *ngIf="item.subitems" class="expand-symbol">›</span>
+      <span *ngIf="item.subitems" class="expand-symbol"></span>
     </div>
   </div>
-</div>-->
-
-<div
-  class="navigation-left"
-  *ngIf="menuMode != 0"
-  [ngClass]="{ expanded: expanded }"
->
-  <mat-tree
-    [dataSource]="dataSource"
-    [treeControl]="treeControl"
-    class="menu-tree"
-  >
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-      <div class="navigation-left_item_unit">
-        <img
-          class="navigation-left_img"
-          [src]="'../../../assets/Images/' + node.icon + '.png'"
-          [title]="node.label"
-        />
-        <span>{{ node.label }}</span>
-      </div>
-    </mat-tree-node>
-
-    <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-      <div class="mat-tree-node navigation-left_item_unit" matTreeNodeToggle>
-        <img
-          class="navigation-left_img"
-          [src]="'../../../assets/Images/' + node.icon + '.png'"
-          [title]="node.label"
-        />
-
-        <span> {{ node.label }}</span>
-        <button mat-icon-button [attr.aria-label]="'Toggle ' + node.label">
-          <span
-            [ngClass]="{ expand_more: treeControl.isExpanded(node) }"
-            (click)="expandNode(node)"
-          >
-            <svg
-              width="7"
-              height="10"
-              viewBox="0 0 7 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 1L5 5L1 9"
-                stroke="#757575"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        [class.menu-tree-invisible]="!treeControl.isExpanded(node)"
-        role="group"
-      >
-        <ng-container matTreeNodeOutlet></ng-container>
-      </div>
-    </mat-nested-tree-node>
-  </mat-tree>
 </div>

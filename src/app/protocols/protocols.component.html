@@ -1,0 +1,1949 @@
+<div
+  style="
+    position: fixed;
+    inset: 0px;
+    z-index: 100000;
+    background-color: rgba(128, 128, 128, 0.7);
+    display: block;
+  "
+>
+  <div
+    id="QCareModalDialog"
+    class="modal-dialog"
+    style="display: block; opacity: 1"
+  >
+    <div id="QCareModalDialogContent" class="modal-content double-width">
+      <div id="QCareModalClose" class="close">
+        <span id="QCareModalCloseButtonText">Prescrire un protocole</span
+        ><button class="close" data-dismiss="modal" type="button">X</button>
+      </div>
+      <div id="QCareModalDialogHeader" class="modal-header">
+        <span>Protocole REA</span>
+      </div>
+      <div id="QCareModalDialogBody" class="modal-body">
+        <p>
+          <input
+            onchange="window.RecalcProtocolBegin(undefined,true)"
+            id="QCare_Prot_Date"
+            max="2999-12-31T23:59"
+            type="datetime-local"
+            value="2024-10-15T14:41"
+          />
+        </p>
+        <div class="qcare_prot_table_wrapper">
+          <table
+            id="QCare_Prot_Table"
+            data-prot_patientkey="520318"
+            data-prot_cathkey="-1"
+            data-prot_woundkey="-1"
+            data-prot_woundrevision="-1"
+          >
+            <thead>
+              <tr>
+                <th class="qcare_prot_table_checkbox"></th>
+                <th class="qcare_prot_table_name">Libellé</th>
+                <th class="qcare_prot_table_distribution">Distribution</th>
+                <th class="qcare_prot_table_begin">Démarrer</th>
+                <th class="qcare_prot_table_duration">Durée</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                data-prot_type="0"
+                data-prot_ordernumber="2"
+                data-prot_inttype="0"
+                data-prot_distype="201"
+                data-prot_madkey="null"
+                data-prot_compcount="2"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="2"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="HEPARINE 10000 UI / 48ML"
+                >
+                  <span
+                    class="expand-btn"
+                    onclick="window.ShowHideProtocolComps(this,2)"
+                  ></span
+                  >HEPARINE 10000 UI / 48ML
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light"></div>
+                    <div class="dialog-col-controls">
+                      <span style="display: none"
+                        ><input
+                          data-qcmodaldata_mandatory="1"
+                          data-qcmodaldata_mandatory_nozero="1"
+                          type="number"
+                          value="1"
+                          name="DisType_301|N3"
+                        />recharge(s)</span
+                      ><span>Pendant</span
+                      ><input
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        type="number"
+                        value="24"
+                        name="DisType_101|N1"
+                      />
+                      <select
+                        class="middle-field"
+                        name="DisType_101|N2"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2024-11-26T05:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="155062"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  HEPARINE SODIQUE PANPHARMA 5000 UI/ml sol inj IV
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="10000" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">flacon</option>
+                    <option value="1">ml</option>
+                    <option selected="" value="4">IU</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="153862"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  CHLORURE DE SODIUM AGUETTANT 0,9 % sol p perf
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="48" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">poche</option>
+                    <option selected="" value="1">ml</option>
+                    <option value="2">mg</option>
+                    <option value="3">µg</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_type="0"
+                data-prot_ordernumber="3"
+                data-prot_inttype="402"
+                data-prot_distype="301"
+                data-prot_madkey="null"
+                data-prot_compcount="2"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="2"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="EUPANTOL 40MG / 50ML"
+                >
+                  <span
+                    class="expand-btn"
+                    onclick="window.ShowHideProtocolComps(this,2)"
+                  ></span
+                  >EUPANTOL 40MG / 50ML
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light"></div>
+                    <div class="dialog-col-controls">
+                      <input
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        type="number"
+                        value="2"
+                        name="DisType_301|N3"
+                      />
+                      recharge(s)<span>Pendant</span
+                      ><input
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        type="number"
+                        value="30"
+                        name="DisType_101|N1"
+                      />
+                      <select
+                        class="middle-field"
+                        name="DisType_101|N2"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option selected="" value="1">minute(s)</option>
+                        <option value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option></select
+                      ><input
+                        type="number"
+                        name="DisType_2|N1"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="2"
+                      /><span>fois par 24h</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-01-06T21:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="154622"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  EUPANTOL 40 mg pdre p sol inj IV
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="40" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">flacon</option>
+                    <option selected="" value="2">mg</option>
+                    <option value="3">µg</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="154337"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  CHLORURE DE SODIUM MACOPHARMA 0,9 % sol p perf
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="50" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">poche</option>
+                    <option selected="" value="1">ml</option>
+                    <option value="2">mg</option>
+                    <option value="3">µg</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_type="0"
+                data-prot_ordernumber="4"
+                data-prot_inttype="0"
+                data-prot_distype="1"
+                data-prot_madkey="null"
+                data-prot_compcount="2"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="2"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="SUFENTA 250 µg / 50 ml"
+                >
+                  <span
+                    class="expand-btn"
+                    onclick="window.ShowHideProtocolComps(this,2)"
+                  ></span
+                  >SUFENTA 250 µg / 50 ml
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">Dose unique</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <input
+                    class="QCare_Hidden"
+                    name="QCare_Protocol_EndOfAdmissionCheckBox"
+                    type="checkbox"
+                    onchange="window.EnableDisableOtherInput(this)"
+                  /><input
+                    class="QCare_Hidden"
+                    name="QCare_Protocol_EndDate"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-01-06T21:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="153862"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  CHLORURE DE SODIUM AGUETTANT 0,9 % sol p perf
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="50" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">poche</option>
+                    <option selected="" value="1">ml</option>
+                    <option value="2">mg</option>
+                    <option value="3">µg</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="155156"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  SUFENTANIL MYLAN 50 Âµg/ml sol inj IV/pÃ©ridurale
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="250" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">ampoule</option>
+                    <option value="1">ml</option>
+                    <option value="2">mg</option>
+                    <option selected="" value="3">µg</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_type="0"
+                data-prot_ordernumber="5"
+                data-prot_inttype="0"
+                data-prot_distype="202"
+                data-prot_madkey="null"
+                data-prot_compcount="1"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="1"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="PROPOFOL 500MG / 50ML"
+                >
+                  <span
+                    class="expand-btn"
+                    onclick="window.ShowHideProtocolComps(this,1)"
+                  ></span
+                  >PROPOFOL 500MG / 50ML
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">Avec un débit de</div>
+                    <div class="dialog-col-controls">
+                      <select
+                        class="long-field"
+                        name="DisType_102|S1"
+                        onchange="window.changeCompForRate(this);window.CalculateExpectedFlowRate()"
+                      >
+                        <option
+                          selected=""
+                          data_qcare_compkey="0"
+                          data_qcare_unitlist="1"
+                          data_qcare_defaultunit="1"
+                          data_qcare_dosageunitname="DU"
+                        >
+                          Débit total
+                        </option>
+                        <option
+                          data_qcare_compkey="154032"
+                          data_qcare_unitlist="0|2|3"
+                          data_qcare_defaultunit="3"
+                          data_qcare_dosageunitname="seringue préremplie"
+                        >
+                          DIPRIVAN 10 mg/ml Ã©muls inj seringue prÃ©remplie
+                        </option></select
+                      ><input
+                        name="DisType_102|N2"
+                        type="number"
+                        min="0"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="5"
+                      />
+                      <input
+                        style="display: none"
+                        name="DisType_102|N7"
+                        type="number"
+                        value="0"
+                      /><select
+                        name="DisType_102|N3"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option selected="" value="1">ml</option></select
+                      ><span>/</span
+                      ><select
+                        name="DisType_102|N4"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option selected="" value="0"></option></select
+                      ><span>/</span
+                      ><input
+                        name="DisType_102|N5"
+                        style="display: none"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        type="number"
+                        value="1"
+                      />
+                      <select
+                        class="middle-field"
+                        name="DisType_102|N6"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-02-17T13:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="154032"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  DIPRIVAN 10 mg/ml Ã©muls inj seringue prÃ©remplie
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="500" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">seringue préremplie</option>
+                    <option value="1">ml</option>
+                    <option selected="" value="2">mg</option>
+                    <option value="3">µg</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_type="1"
+                data-prot_ordernumber="6"
+                data-prot_inttype="0"
+                data-prot_distype="3"
+                data-prot_madkey="2602"
+                data-prot_compcount="0"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="0"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="Glycémie"
+                >
+                  Glycémie
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">chaque</div>
+                    <div class="dialog-col-controls">
+                      <input
+                        type="number"
+                        name="DisType_3|N1"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="4"
+                      />
+                      <select class="middle-field" name="DisType_3|N2">
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-03-31T06:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_type="1"
+                data-prot_ordernumber="7"
+                data-prot_inttype="0"
+                data-prot_distype="3"
+                data-prot_madkey="2605"
+                data-prot_compcount="0"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="0"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="Soins liés au pansement de VAC"
+                >
+                  Soins liés au pansement de VAC
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">chaque</div>
+                    <div class="dialog-col-controls">
+                      <input
+                        type="number"
+                        name="DisType_3|N1"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="72"
+                      />
+                      <select class="middle-field" name="DisType_3|N2">
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-05-11T22:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_type="1"
+                data-prot_ordernumber="8"
+                data-prot_inttype="0"
+                data-prot_distype="3"
+                data-prot_madkey="2577"
+                data-prot_compcount="0"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="0"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="Validation des signes vitaux"
+                >
+                  Validation des signes vitaux
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">chaque</div>
+                    <div class="dialog-col-controls">
+                      <input
+                        type="number"
+                        name="DisType_3|N1"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="2"
+                      />
+                      <select class="middle-field" name="DisType_3|N2">
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-06-22T14:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_type="1"
+                data-prot_ordernumber="9"
+                data-prot_inttype="0"
+                data-prot_distype="3"
+                data-prot_madkey="2479"
+                data-prot_compcount="0"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="0"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="Soins de KT"
+                >
+                  Soins de KT
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">chaque</div>
+                    <div class="dialog-col-controls">
+                      <input
+                        type="number"
+                        name="DisType_3|N1"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="72"
+                      />
+                      <select class="middle-field" name="DisType_3|N2">
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-08-03T06:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_type="1"
+                data-prot_ordernumber="10"
+                data-prot_inttype="0"
+                data-prot_distype="3"
+                data-prot_madkey="2603"
+                data-prot_compcount="0"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="0"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="Changement tubulure propofol"
+                >
+                  Changement tubulure propofol
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">chaque</div>
+                    <div class="dialog-col-controls">
+                      <input
+                        type="number"
+                        name="DisType_3|N1"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="8"
+                      />
+                      <select class="middle-field" name="DisType_3|N2">
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-09-13T22:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_type="1"
+                data-prot_ordernumber="11"
+                data-prot_inttype="0"
+                data-prot_distype="6"
+                data-prot_madkey="2211"
+                data-prot_compcount="0"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="0"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="Isolement"
+                >
+                  Isolement
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">Quod satis:</div>
+                    <div class="dialog-col-controls">
+                      <input
+                        data-qcmodaldata_mandatory="1"
+                        maxlength="100"
+                        autocomplete="off"
+                        type="text"
+                        name="DisType_6|S1"
+                        value="Isolation"
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-10-25T14:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_type="0"
+                data-prot_ordernumber="12"
+                data-prot_inttype="0"
+                data-prot_distype="102"
+                data-prot_madkey="null"
+                data-prot_compcount="1"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="1"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="RINGER LACTATE 500 ML"
+                >
+                  <span
+                    class="expand-btn"
+                    onclick="window.ShowHideProtocolComps(this,1)"
+                  ></span
+                  >RINGER LACTATE 500 ML
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">Avec un débit de</div>
+                    <div class="dialog-col-controls">
+                      <select
+                        class="long-field"
+                        name="DisType_102|S1"
+                        onchange="window.changeCompForRate(this);window.CalculateExpectedFlowRate()"
+                      >
+                        <option
+                          selected=""
+                          data_qcare_compkey="0"
+                          data_qcare_unitlist="1"
+                          data_qcare_defaultunit="1"
+                          data_qcare_dosageunitname="DU"
+                        >
+                          Débit total
+                        </option>
+                        <option
+                          data_qcare_compkey="154683"
+                          data_qcare_unitlist="0"
+                          data_qcare_defaultunit="1"
+                          data_qcare_dosageunitname="poche suremballée"
+                        >
+                          RINGER LACTATE MACOPHARMA sol p perf
+                        </option></select
+                      ><input
+                        name="DisType_102|N2"
+                        type="number"
+                        min="0"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="250"
+                      />
+                      <input
+                        style="display: none"
+                        name="DisType_102|N7"
+                        type="number"
+                        value="0"
+                      /><select
+                        name="DisType_102|N3"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option selected="" value="1">ml</option></select
+                      ><span>/</span
+                      ><select
+                        name="DisType_102|N4"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option selected="" value="0"></option></select
+                      ><span>/</span
+                      ><input
+                        name="DisType_102|N5"
+                        style="display: none"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        type="number"
+                        value="1"
+                      />
+                      <select
+                        class="middle-field"
+                        name="DisType_102|N6"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="13">Dosage héparine</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-12-06T05:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="154683"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  RINGER LACTATE MACOPHARMA sol p perf
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="500" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">poche suremballée</option>
+                    <option selected="" value="1">ml</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_type="1"
+                data-prot_ordernumber="13"
+                data-prot_inttype="0"
+                data-prot_distype="1"
+                data-prot_madkey="2788"
+                data-prot_compcount="0"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="0"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="Dosage héparine"
+                >
+                  Dosage héparine
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">Dose unique</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="6"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="14">
+                        AMIKACINE (Amiklin) injectable
+                      </option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T20:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <input
+                    class="QCare_Hidden"
+                    name="QCare_Protocol_EndOfAdmissionCheckBox"
+                    type="checkbox"
+                    onchange="window.EnableDisableOtherInput(this)"
+                  /><input
+                    class="QCare_Hidden"
+                    name="QCare_Protocol_EndDate"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2025-12-06T05:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_type="0"
+                data-prot_ordernumber="14"
+                data-prot_inttype="403"
+                data-prot_distype="302"
+                data-prot_madkey="null"
+                data-prot_compcount="2"
+              >
+                <td>
+                  <input
+                    data-prot_componentcount="2"
+                    type="checkbox"
+                    class="QCare_Protocol_check"
+                    name="QCare_Protocol_check"
+                  />
+                </td>
+                <td
+                  name="QCare_Protocol_Order_Label"
+                  data-prot_label="AMIKACINE (Amiklin)  injectable"
+                >
+                  <span
+                    class="expand-btn"
+                    onclick="window.ShowHideProtocolComps(this,2)"
+                  ></span
+                  >AMIKACINE (Amiklin) injectable
+                </td>
+                <td>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">Avec un débit de</div>
+                    <div class="dialog-col-controls">
+                      <select
+                        class="long-field"
+                        name="DisType_102|S1"
+                        onchange="window.changeCompForRate(this);window.CalculateExpectedFlowRate()"
+                      >
+                        <option
+                          data_qcare_compkey="0"
+                          data_qcare_unitlist="1"
+                          data_qcare_defaultunit="1"
+                          data_qcare_dosageunitname="DU"
+                        >
+                          Débit total
+                        </option>
+                        <option
+                          selected=""
+                          data_qcare_compkey="154203"
+                          data_qcare_unitlist="0|2|3"
+                          data_qcare_defaultunit="3"
+                          data_qcare_dosageunitname="flacon"
+                        >
+                          AMIKACINE MYLAN 500 mg pdre p sol inj
+                        </option></select
+                      ><input
+                        name="DisType_102|N2"
+                        type="number"
+                        min="0"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="10"
+                      />
+                      <input
+                        style="display: none"
+                        name="DisType_102|N7"
+                        type="number"
+                        value="0"
+                      /><select
+                        name="DisType_102|N3"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option value="0">flacon</option>
+                        <option selected="" value="2">mg</option>
+                        <option value="3">µg</option></select
+                      ><span>/</span
+                      ><select
+                        name="DisType_102|N4"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option selected="" value="0"></option></select
+                      ><span>/</span
+                      ><input
+                        name="DisType_102|N5"
+                        style="display: none"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        type="number"
+                        value="1"
+                      />
+                      <select
+                        class="middle-field"
+                        name="DisType_102|N6"
+                        onchange="window.CalculateExpectedFlowRate()"
+                      >
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="dialog-line">
+                    <div class="dialog-col-label light">
+                      pour une période de
+                    </div>
+                    <div class="dialog-col-controls">
+                      <input
+                        name="DisType_302|N7"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        type="number"
+                        value="1"
+                      /><select class="middle-field" name="DisType_302|N8">
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option></select
+                      ><span>chaque</span
+                      ><input
+                        type="number"
+                        name="DisType_3|N1"
+                        data-qcmodaldata_mandatory="1"
+                        data-qcmodaldata_mandatory_nozero="1"
+                        value="8"
+                      />
+                      <select class="middle-field" name="DisType_3|N2">
+                        <option value="1">minute(s)</option>
+                        <option selected="" value="2">Heure(s)</option>
+                        <option value="3">Jour(s)</option>
+                        <option value="4">Semaine(s)</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="start-controls">
+                    <input
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      type="number"
+                      name="QCare_Protocol_StartNumber"
+                      min="0"
+                      value="0"
+                    /><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartUnit"
+                    >
+                      <option value="1">minute(s)</option>
+                      <option value="2" selected="">Heure(s)</option>
+                      <option value="3">Jour(s)</option>
+                      <option value="4">Semaine(s)</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartBeforeAfter"
+                    >
+                      <option selected="" value="1">après</option>
+                      <option value="2">avant</option></select
+                    ><select
+                      onchange="window.RecalcProtocolBegin(this.parentElement.parentElement,true)"
+                      name="QCare_Protocol_StartOrderSelection"
+                    >
+                      <option selected="" value="1">start</option>
+                      <option value="2">HEPARINE 10000 UI / 48ML</option>
+                      <option value="3">EUPANTOL 40MG / 50ML</option>
+                      <option value="4">SUFENTA 250 µg / 50 ml</option>
+                      <option value="5">PROPOFOL 500MG / 50ML</option>
+                      <option value="6">Glycémie</option>
+                      <option value="7">Soins liés au pansement de VAC</option>
+                      <option value="8">Validation des signes vitaux</option>
+                      <option value="9">Soins de KT</option>
+                      <option value="10">Changement tubulure propofol</option>
+                      <option value="11">Isolement</option>
+                      <option value="12">RINGER LACTATE 500 ML</option>
+                      <option value="13">Dosage héparine</option></select
+                    ><input
+                      type="datetime-local"
+                      max="2999-12-31T23:59"
+                      disabled=""
+                      value="2024-10-15T14:41"
+                      name="QCare_Protocol_StartDate"
+                    />
+                  </div>
+                </td>
+                <td>
+                  <label
+                    ><span>jusqu'à la fin de l'admission</span
+                    ><input
+                      name="QCare_Protocol_EndOfAdmissionCheckBox"
+                      type="checkbox"
+                      onchange="window.EnableDisableOtherInput(this)" /></label
+                  ><input
+                    name="QCare_Protocol_EndDate"
+                    onchange="window.LimitToOtherInput(this, this.parentElement.parentElement.querySelector('[name=\'QCare_Protocol_StartDate\']'), false)"
+                    max="2999-12-31T23:59"
+                    type="datetime-local"
+                    value="2026-01-16T21:41"
+                  />
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="154203"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  AMIKACINE MYLAN 500 mg pdre p sol inj
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="1000" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">flacon</option>
+                    <option selected="" value="2">mg</option>
+                    <option value="3">µg</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr
+                data-prot_drugkey="154490"
+                data-prot_propertiesdrugkey="undefined"
+                data-is_drug_comp="true"
+                class="QCare_Hidden"
+              >
+                <td></td>
+                <td style="text-indent: 5%">
+                  CHLORURE DE SODIUM MACOPHARMA 0,9 % sol p perf
+                </td>
+                <td>
+                  <input name="Prot_Comp_Dosage" type="number" value="100" />
+                </td>
+                <td>
+                  <select name="Prot_Comp_DosageUnit">
+                    <option value="0">poche</option>
+                    <option selected="" value="1">ml</option>
+                    <option value="2">mg</option>
+                    <option value="3">µg</option></select
+                  ><select name="Prot_Comp_DosageRelativity">
+                    <option selected="" value="0"></option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="QCareModalActionLine" class="Modal_ActionRow">
+        <button
+          id="QCareModalSave"
+          class="Modal_Save"
+          data-dismiss="modal"
+          type="button"
+          style="float: right"
+        >
+          Sauvegarder</button
+        ><button
+          class="Modal_Cancel"
+          data-dismiss="modal"
+          type="button"
+          style="float: right"
+        >
+          Annuler</button
+        ><button
+          class="Modal_Additional"
+          id="Modal_Additional"
+          type="button"
+          style="float: right"
+        >
+          Supprimer la sélection</button
+        ><button
+          class="Modal_Additional QCare_Hidden"
+          id="Modal_Secondary_Additional"
+          type="button"
+          style="float: right"
+        >
+          Additional2</button
+        ><button
+          class="Modal_Back"
+          id="QCareModalBack"
+          type="button"
+          style="display: none"
+        >
+          Retourner</button
+        ><button
+          class="Modal_Next"
+          id="QCareModalNext"
+          type="button"
+          style="display: none"
+        >
+          Suivant
+        </button>
+      </div>
+      <div id="QCareModalDialogFooter" class="modal-footer"></div>
+    </div>
+  </div>
+</div>

@@ -9,3 +9,308 @@
     box-sizing: border-box;
 }
 
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: .5rem;
+    pointer-events: none;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 500px;
+        margin: 1.75rem auto;
+    }
+}
+
+#QCareModalDialog {
+    margin-top: 140px;
+    max-width: 95vw !important;
+}
+
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+}
+
+#QCareModalDialogContent {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, .161));
+    overflow: visible;
+    height: auto;
+    padding: 0;
+    border: none !important;
+    border-radius: 0 !important;
+    box-sizing: border-box;
+    font-size: 14px;
+    width: auto;
+    margin: auto;
+    position: relative;
+}
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    opacity: .5;
+}
+
+#QCareModalClose {
+    background-color: #1c6db5;
+    opacity: 1;
+    padding: 0 24px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+#QCareModalClose span {
+    text-shadow: none;
+    background-color: #fff;
+    color: #454545;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: open sans, sans-serif;
+    display: flex;
+    text-align: left;
+    padding: 0 10px;
+    height: 60px;
+    width: 282px;
+    align-items: center;
+    line-height: 1.2;
+    flex: initial;
+    position: relative;
+}
+
+#QCareModalClose span:not(:empty) {
+    text-shadow: none;
+    background-color: #fff;
+    color: #454545;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: open sans, sans-serif;
+    display: flex;
+    text-align: left;
+    padding: 0 10px;
+    height: 60px;
+    width: 282px;
+    align-items: center;
+    line-height: 1.2;
+    flex: initial;
+    position: relative;
+}
+
+
+#QCareModalClose span:not(:empty):after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, transparent 0 49%, white 49% 100%);
+    display: block;
+    transform: rotate(45deg);
+    position: absolute;
+    right: -25px;
+    top: 6px;
+    border-radius: 10px;
+}
+
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+
+button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+}
+
+
+#QCareModalClose button {
+    font-size: 0;
+    opacity: 1;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    display: block;
+    margin-top: -3px;
+}
+
+#QCareModalClose button:after {
+    content: "\d7";
+    opacity: 1;
+    width: 19px;
+    height: 19px;
+    font-size: 24px;
+    color: #fff;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
+}
+
+#QCareModalDialogHeader {
+    font-family: Open Sans, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 7px 7px 25px;
+    border: none;
+    justify-content: flex-start;
+    font-size: 1rem;
+}
+
+#QCareModalDialogHeader span {
+    position: absolute;
+}
+
+#QCareModalDialogHeader span:first-child {
+    top: 0;
+    left: 325px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: #fff;
+    padding-right: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+
+#QCareModalDialogBody.modal-body {
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #7a7a7a;
+    display: block;
+    flex-direction: column;
+    margin: 0;
+    border: none;
+    padding: 0 16px 22px;
+}
+
+#QCareModalDialogBody:not(.wizard-modal-body) {
+    max-height: calc(100vh - 320px);
+    overflow: auto;
+}
+
+#QCareModalDialogBody p {
+    font-size: 14px;
+    font-weight: 700;
+    margin: .5rem 0;
+}
+
+#QCareModalDialogBody input[type=datetime-local],
+#QCareModalDialogBody input[type=text],
+#Presc_Validation_DoctorName {
+    border: 1px solid #646464;
+    background-color: #ebebeb;
+    color: #666;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 40px;
+    font-family: Open Sans, sans-serif;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+
+#QCareModalActionLine, .QCare_selectedTimes_closeRow {
+    background-color: transparent;
+    margin: 0 16px;
+}
+
+#QCareModalActionLine button, .QCare_selectedTimes_closeRow button {
+    background: transparent;
+    border-radius: 3px;
+    border: none;
+    text-align: center;
+    font-family: Open Sans, sans-serif;
+    font-size: 100%;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #00000091;
+    opacity: 1;
+    height: 42px;
+    line-height: normal;
+    padding: 13px 33px;
+    min-width: auto;
+    margin-left: 22px;
+    margin-right: 0;
+}
+
+
+#QCareModalActionLine button.Modal_Save, .QCare_selectedTimes_closeRow .Modal_Save {
+    background: #1c6db5;
+    color: #fff;
+}
+
+#QCareModalActionLine button.Modal_Cancel, .QCare_selectedTimes_closeRow .Modal_Cancel {
+    color: #00000091;
+    background: transparent;
+    color: #000;
+}
+
+#QCareModalActionLine button.Modal_Additional {
+    background: #add8e6;
+    color: #000;
+}
+
+
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    padding: .75rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: calc(.3rem - 1px);
+    border-bottom-left-radius: calc(.3rem - 1px);
+}
+
+#QCareModalDialogFooter {
+    border-top: none;
+}

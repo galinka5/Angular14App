@@ -1,0 +1,249 @@
+.qcare_prot_table_wrapper {
+    max-height: calc(100vh - 400px);
+    overflow: auto;
+}
+
+#QCare_Prot_Table {
+    font-family: Open Sans, Segoe UI, Helvetica, Arial, sans-serif;
+    table-layout: fixed;
+}
+
+#QCare_Prot_Table thead th {
+    background-color: #DAEDFF;
+    color: #364881;
+    font-size: 1.25em;
+    font-weight: 700;
+    text-align: left;
+    line-height: 2rem;
+    padding: 0 18px;
+}
+
+#QCare_Prot_Table thead th:first-child {
+    padding: 0;
+    width: 0;
+    border: none;
+}
+
+#QCare_Prot_Table thead th:nth-child(1) {
+    width: 54px;
+}
+
+#QCare_Prot_Table thead th:nth-child(2) {
+    width: 15%;
+}
+
+#QCare_Prot_Table tr:hover {
+background-color: #f8f8f8;
+}
+
+#QCare_Prot_Table td {
+    background-color: transparent;
+    color: #666;
+    vertical-align: top;
+    border-top: 1px solid #aaa;
+    padding: 14px 18px;
+    font-weight: 700;
+}
+
+#QCare_Prot_Table td input[type=checkbox] {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.QCare_Protocol_check {
+    width: 16px;
+    height: 16px;
+}
+
+#QCareModalDialogBody #QCare_Prot_Table td input,
+#QCareModalDialogBody #QCare_Prot_Table td select {
+    margin: 0 .5rem .5em;
+}
+
+#QCareModalDialogBody #QCare_Prot_Table td select.middle-field{
+  width: 100px;
+}
+
+#QCareModalDialogBody #QCare_Prot_Table td input[type=checkbox]:before {
+    content: "";
+}
+
+#QCare_Prot_Table tbody td[name=QCare_Protocol_Order_Label] span {
+    border: none !important;
+    color: transparent;
+}
+
+#QCare_Prot_Table tbody td[name=QCare_Protocol_Order_Label] span:after {
+    display: inline-block;
+    content: "";
+    width: 12px;
+    height: 8px;
+    background-repeat: no-repeat;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M0,9.818,2.25,12,6,8.364,9.75,12,12,9.818,6,4Z" transform="translate(12 12) rotate(180)" fill="%237a7a7a"/></svg>');
+    transform: translate(-8px);
+}
+
+#QCareModalDialogBody #QCare_Prot_Table .dialog-line {
+    display: flex;  /**common */
+    justify-content: flex-start;  /**common */
+    margin-bottom: 10px;  /**common */
+    font-size: 1rem;  /**common */
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+#QCareModalDialogBody #QCare_Prot_Table .dialog-line .dialog-col-label {
+    width: auto;
+    min-width: 160px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #696969;
+}
+
+
+#QCareModalDialogBody #QCare_Prot_Table .dialog-line .dialog-col-label.light {
+    text-align: left;
+    margin-bottom: 4px;
+    font-weight: 400; /**common */
+}
+
+#QCareModalDialogBody #QCare_Prot_Table .dialog-line .dialog-col-label.light:empty {
+    display: none;
+}
+
+#QCareModalDialogBody #QCare_Prot_Table .dialog-line .dialog-col-controls {
+    display: flex;
+    align-items: baseline;
+    flex: 1;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#QCare_Prot_Table .dialog-line .dialog-col-controls * {
+    margin: .5rem 4px;
+}
+
+#QCareModalDialogBody .dialog-line .dialog-col-controls span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#QCareModalDialogBody .dialog-line .dialog-col-controls:not(.flex-column)>*+* {
+    margin-left: 12px;
+}
+
+
+/** try to change only color here because depends on other components */
+#QCareModalDialogBody #QCare_Prot_Table input[type=number],
+#QCareModalDialogBody #QCare_Prot_Table input[type=text] {
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    color: #666;
+    height: 40px;
+    width: 80px;
+    border: 1px solid #bababa;
+    background: #fff;
+}
+
+#QCare_Prot_Table td input[type=number],
+#QCareModalDialogBody input[type=datetime-local],
+#QCare_Prot_Table td select{
+    background-color: #fff;
+    color: #666;
+     border: 1px solid #bababa;
+}
+
+#QCareModalDialogBody #QCare_Prot_Table  select.long-field {
+    width: 290px;
+    max-width: 290px;
+}
+
+#QCareModalDialogBody #QCare_Prot_Table input[type=text] {
+    width: 100%;
+}
+
+#QCareModalDialogBody select {
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #bababa;
+    background: #ebebeb;
+    font-family: Open Sans, sans-serif;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 100px;
+    color: #666;
+    background-color: #fff;
+    font-size: .875rem;
+}
+
+#QCare_Prot_Table td select {
+    background-color: #fff;
+    color: #666;
+    border-bottom: 1px solid #bababa;
+}
+
+#QCareModalDialogBody select.middle-field {
+    width: 125px;
+    max-width: 125px;
+}
+
+#QCare_Prot_Table td .start-controls {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/** COLLAPS , SUBLINES*/
+#QCare_Prot_Table tr[data-is_drug_comp=true] td {
+    border-top: none;
+}
+
+#QCare_Prot_Table tr[data-is_drug_comp=true] td:nth-child(2):before {
+    content: "";
+    width: 2px;
+    height: 20px;
+    background-color: #b5b5b5;
+}
+
+#QCare_Prot_Table tr[data-is_drug_comp=true] td:nth-child(2) {
+    position: relative;
+    font-weight: normal;
+    color:#666;
+}
+
+#QCare_Prot_Table td .start-controls * {
+    margin: .5rem;
+    flex: 0 0 46%;
+    max-width: 140px;
+}
+
+#QCare_Prot_Table td .start-controls input[type=datetime-local] {
+    flex: 0 0 100%;
+    max-width: 296px;
+}
+
+
+/** ----------------------- new html items ------------------------------*/
+.datepicker-label{
+  color: #4D4D4D;
+  margin-right: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 54px;
+}
+
+#QCare_Prot_Table td label{
+ border: 1px solid #bababa;
+ background-color: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  color:#666;
+  margin:0 0.5rem 0.5rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+#QCare_Prot_Table td label input[type=checkbox]{
+    width: 16px;
+    height: 16px;
+}
