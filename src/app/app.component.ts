@@ -9,8 +9,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Angular14App';
-
   mode: number = 0;
 
   readonly dialog = inject(MatDialog);
