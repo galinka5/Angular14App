@@ -1,4 +1,4 @@
-import { Component, inject, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ModuleNavigationComponent } from './module-navigation/module-navigation.component';
 import { DrugExecutionDialogComponent } from './dialogs/drug-execution-dialog/drug-execution-dialog.component';
 import { MatDialog } from '@angular/material/dialog';

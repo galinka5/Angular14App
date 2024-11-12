@@ -7,6 +7,7 @@ import { DrugExecutionDialogComponent } from './dialogs/drug-execution-dialog/dr
 import { ValidationBlockComponent } from './dialogs/validation-block/validation-block.component';
 import { MatDialogModule } from '@angular/material/dialog'
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -14,7 +15,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent
   ],
   imports: [
-    BrowserModule, MatDialogModule, BrowserAnimationsModule
+    CommonModule,
+    BrowserModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
