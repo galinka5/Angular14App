@@ -9,3 +9,199 @@
     box-sizing: border-box;
 }
 
+
+
+/**   FOR DIALOGS   **/
+.mat-mdc-dialog-surface.mdc-dialog__surface {
+  background-color: #ffffff;
+}
+
+.mat-mdc-dialog-title.mdc-dialog__title {
+  color: black !important;
+}
+
+.mat-mdc-dialog-actions.mdc-dialog__actions {
+  display: flex;
+  justify-content: end;
+  background-color: transparent;
+  margin: 0 16px;
+}
+
+  .mat-mdc-dialog-actions.mdc-dialog__actions button {
+    border-radius: 3px;
+    border: none;
+    text-align: center;
+    font-family: Open Sans, sans-serif;
+    font-size: 100%;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #00000091;
+    opacity: 1;
+    height: 42px;
+    line-height: normal;
+    padding: 13px 33px;
+    min-width: auto;
+    margin-left: 22px;
+    margin-right: 0;
+    background: #add8e6;
+    color: black;
+  }
+
+    .mat-mdc-dialog-actions.mdc-dialog__actions button.save-button {
+      color: white;
+      background: #1c6db5;
+    }
+
+      .mat-mdc-dialog-actions.mdc-dialog__actions button.save-button:disabled {
+        color: #a0a0a0;
+        background: #e0e0e0;
+        cursor: not-allowed;
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+
+    .dialog-datetime-input {
+      border: 1px solid #646464;
+      background-color: #ebebeb;
+      color: #666;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      height: 40px;
+      font-family: Open Sans, sans-serif;
+      padding: 10px;
+      border-radius: 6px;
+      margin-left: 12px;
+    }
+
+
+
+.dialog-row-label {
+  width: auto;
+  min-width: 160px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #696969;
+}
+
+.dialog-light {
+  font-weight: 400;
+  margin-left: 12px;
+}
+
+.dialog-component-label {
+  max-width: 364px;
+  min-width: 364px;
+  color: #696969;
+}
+
+.dialog-row-text {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 12px;
+  color: #696969;
+}
+
+.dialog-textarea {
+  color: #666;
+  font-size: .875rem;
+  border-radius: 12px;
+  padding: 10px;
+  border: 2px solid #646464;
+}
+
+.dialog-number-input,
+.dialog-text-input {
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+  height: 40px;
+  width: 80px;
+  border: 1px solid #646464;
+  background: #e7efff;
+  margin-left: 12px;
+}
+
+.dialog-select {
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #646464;
+  background: #ebebeb;
+  font-family: Open Sans, sans-serif;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #666;
+  background-color: #ebebeb;
+  margin-left: 12px;
+  cursor:pointer;
+}
+
+.dialog-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.dialog-checkbox-container {
+  border: 1px solid #646464;
+  background-color: #ebebeb;
+  color: #666;
+  height: 40px;
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  margin-left: 12px;
+  cursor:pointer;
+}
+
+.dialog-clickable-link {
+  padding-left: 25px;
+  font-size: small;
+  text-decoration: underline;
+  color: #1c6db5;
+  cursor: pointer;
+}
+
+.dialog-checkbox-container input[type=checkbox] {
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    accent-color: #646464;
+  }
+
+.dialog-empty-mandatory {
+  background-color: #ffff7e !important;
+}
+
+.dialog-expected-flowrate {
+  border: #6CCD62 1px solid;
+  background-color: #e9f0e9;
+  color: #276d20;
+  border-radius: 100px;
+  padding: 8px 8px 8px 32px;
+  font-style: italic;
+  position: relative;
+}
+
+.dialog-remove-component {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.dialog-trash-button {
+  cursor: pointer;
+  float: right;
+}
+.dialog-margin-left{
+    margin-left: 12px;
+}
+

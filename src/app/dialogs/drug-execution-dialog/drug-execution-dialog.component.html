@@ -1,0 +1,86 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<div mat-dialog-content>
+  <ng-container *ngIf="loading">
+    <p>Loading...</p>
+  </ng-container>
+  <ng-container *ngIf="loaded">
+    <div>
+      <div class="dialog-line">
+        <span class="dialog-row-label">{{textExecDate}}</span>
+        <input [class.dialog-empty-mandatory]="!execDateAsLocalTime" max="2999-12-31T23:59" class="dialog-datetime-input" type="datetime-local" [value]="execDateAsLocalTime" (change)="setStartDate($event)" />
+        <img [title]="textSetToLastEndDate" class="clickable" *ngIf="lastEndDateAsLocalTime != null" src="../../../assets/Images/filling-arrow.svg" (click)="setStartDate(lastEndDateAsLocalTime)" />
+        <div *ngIf="plannedDateAsLocalTime != null && plannedDateAsLocalTime != execDateAsLocalTime">
+          <span class="dialog-row-label dialog-margin-left">{{textPlannedDate}} : {{readablePlannedDate()}}</span>
+        </div>
+      </div>
+      <div *ngIf="isInfusion" class="dialog-line">
+        <span class="dialog-row-label">{{textWithARateOf}}</span>
+        <select class="dialog-select" (change)="setExecParam(7,$event)">
+          <option value="0" [selected]="(execParam7 ?? 0) == 0">{{textTotalDosage}}</option>
+          <option [value]="mainCompKey" [selected]="execParam7 == mainCompKey">{{mainCompName}}</option>
+        </select>
+        <input min="0" [class.dialog-empty-mandatory]="(execParam2 ?? 0) == 0" class="dialog-number-input" type="number" [value]="execParam2" (change)="setExecParam(2,$event)" />
+        <select *ngIf="(execParam7 ?? 0) != 0" class="dialog-select" (change)="setExecParam(3,$event)">
+          <option *ngFor="let unit of flowUnitList" [value]="unit.Key" [selected]="unit.Key == execParam3">{{unit.Label}}</option>
+        </select>
+        <span class="dialog-row-text" *ngIf="(execParam7 ?? 0) == 0">ml</span>
+        <select class="dialog-select" (change)="setExecParam(4,$event)" [disabled]="noWeight">
+          <option [value]="0" [selected]="noWeight || execParam4 == 0"></option>
+          <option [value]="1" [selected]="!noWeight && execParam4 == 1">kg</option>
+          <option [value]="2" [selected]="!noWeight && execParam4 == 2">bsa</option>
+        </select>
+        <input *ngIf="execParam5 != 1" min="0" [class.dialog-empty-mandatory]="(execParam5 ?? 0) == 0" class="dialog-number-input" type="number" [value]="execParam5" (change)="setExecParam(5,$event)" />
+        <select class="dialog-select" (change)="setExecParam(6,$event)">
+          <option value="1" [selected]="execParam6 == 1">{{textMinutes}}</option>
+          <option value="2" [selected]="execParam6 == 2">{{textHours}}</option>
+          <option value="3" [selected]="execParam6 == 3">{{textDays}}</option>
+          <option value="4" [selected]="execParam6 == 4">{{textWeeks}}</option>
+        </select>
+      </div>
+      <div class="dialog-line" *ngIf="flowRateString">
+        <span class="dialog-expected-flowrate">
+          <img src="../../../assets/Images/flowRate-addon.svg" />
+          <span>{{flowRateString}}</span>
+        </span>
+      </div>
+    </div>
+    <div>
+      <div class="dialog-line">
+      <span class="dialog-row-label">{{textComponents}}</span>
+      <div class="clickable" *ngIf="components.length > 1">
+        <img width="32" height="32" *ngIf="componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_closed.png" [title]="textUnLinkComponents" />
+        <img width="32" height="32" *ngIf="!componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_open.png" [title]="textLinkComponents" />
+      </div>
+           </div>
+      <div class="dialog-line" *ngFor="let component of components">
+        <span class="dialog-component-label">{{component.Label}}</span>
+        <span *ngIf="component.DosageQS" class="dialog-row-text light"> ({{component.DosageQS}})</span>
+        <input class="dialog-number-input" [class.dialog-empty-mandatory]="component.Dosage == null" type="number" min="0" [value]="component.Dosage" (change)="setCompDosage(component,$event)" />
+        <select class="dialog-select" (change)="setCompDosageUnit(component,$event)">
+          <option *ngFor="let unit of component.UnitList" [value]="unit.Key" [selected]="unit.Key == component.DosageUnit">{{unit.Label}}</option>
+        </select>
+        <select class="dialog-select" (change)="setCompDosageRelativity(component,$event)" [disabled]="noWeight">
+          <option [value]="0" [selected]="noWeight || component.DosageRelativity == 0"></option>
+          <option [value]="1" [selected]="!noWeight && component.DosageRelativity == 1">kg</option>
+          <option [value]="2" [selected]="!noWeight && component.DosageRelativity == 2">bsa</option>
+        </select>
+        <div (click)="setLotNumbers(component)" [class.dialog-empty-mandatory]="component.NeedLOT && (!component.LotNumbers || component.LotNumbers.length == 0)" class="dialog-text-input flex-grow-1 clickable">
+          {{component.LotNumbers.length > 0 ? component.LotNumbers.join('; ') : textLOTNumber}}
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="needValidation">
+      <validation-block></validation-block>
+    </div>
+
+    <div>
+      <textarea class="dialog-textarea full-width" maxlength="80" [value]="remark" [placeholder]="textComment" (keyup)="setRemark($event)"></textarea>
+    </div>
+
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">{{textCancel}}</button>
+  <button [disabled]="!validToSave()" class="save-button" mat-button (click)="prescribeDrug()">{{textSave}}</button>
+</div>
