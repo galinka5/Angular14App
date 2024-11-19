@@ -1,0 +1,22 @@
+.dosage_column{
+  display:flex;
+  flex-direction:column;
+}
+
+
+.interaction-warning
+{
+background-color: #CEE8FF;
+border: 1px solid #1C6DB5;
+border-radius: 4px;
+padding: 8px 8px 8px 32px;
+color: #1C6DB5;
+font-size: 0.875rem;
+font-weight: 600;
+margin-left: 25px;
+}
+
+.interaction-image {
+margin-right: 8px;
+}
+

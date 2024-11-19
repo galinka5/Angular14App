@@ -1,0 +1,233 @@
+
+<h2 mat-dialog-title>{{ title }} <span class="interaction-warning" *ngIf="hasInterAction"><img class="interaction-image" src="../../../assets/Images/icon-blue.svg" />{{textInterAction}}</span></h2>
+<div mat-dialog-content>
+  <ng-container *ngIf="loading">
+    <p>Loading...</p>
+  </ng-container>
+  <ng-container *ngIf="loaded">
+    <div>
+      <div class="dialog-line">
+        <span class="dialog-row-label">{{textStartDate}}</span>
+        <input [class.dialog-empty-mandatory]="!presc.FromDateAsLocalTime" max="2999-12-31T23:59" class="dialog-datetime-input" type="datetime-local" [value]="presc.FromDateAsLocalTime" (change)="saveStartTime($event)" />
+      </div>
+      <div class="dialog-line">
+        <span class="dialog-row-label">{{textEndDate}}</span>
+        <input max="2999-12-31T23:59" class="dialog-datetime-input" [class.dialog-empty-mandatory]="!presc.TillDateAsLocalTime && !presc.TillEndOfAdmission && ![1,401].includes(presc.DistributionType)" type="datetime-local" [value]="presc.TillDateAsLocalTime" (change)="saveEndTime($event)" [disabled]="presc.TillEndOfAdmission" />
+        <span class="dialog-row-text">{{textOr}}</span>
+        <input min="0" class="dialog-number-input" type="number" [value]="endTimeNumberValue" [disabled]="presc.TillEndOfAdmission" (change)="setEndTimeValue($event)" />
+
+        <select class="dialog-select" (change)="setEndTimeUnit($event)" [disabled]="presc.TillEndOfAdmission">
+          <option value="1" [selected]="endTimeUnit == 1">{{textMinutes}}</option>
+          <option value="2" [selected]="endTimeUnit == 2">{{textHours}}</option>
+          <option value="3" [selected]="endTimeUnit == 3">{{textDays}}</option>
+          <option value="4" [selected]="endTimeUnit == 4">{{textWeeks}}</option>
+        </select>
+        <span class="dialog-row-text">{{textOr}}</span>
+        <label class="dialog-checkbox-container">
+          <span>{{textTillEndOfAdmission}}</span>
+          <input type="checkbox" (change)="setEndOfAdmission()" [checked]="presc.TillEndOfAdmission" />
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <span class="dialog-row-label">{{textDistribution}}</span>
+        <span class="dialog-clickable-link" (click)="openDistributionChange()">{{presc.DistributionAsText}}</span>
+      </div>
+      <div *ngIf="presc.DistributionType == 101 || presc.DistributionType == 201 || presc.DistributionType == 301">
+        <span class="dialog-row-label dialog-light">{{textDuring}}</span>
+        <input class="dialog-number-input" type="number" min="0" [class.dialog-empty-mandatory]="(presc.DistributionNumericParameter1 ?? 0) == 0" [value]="presc.DistributionNumericParameter1" (change)="setNumericParameter(1,$event)"/>
+        <select class="dialog-select" (change)="setNumericParameter(2,$event)">
+          <option value="1" [selected]="presc.DistributionNumericParameter2 == 1">{{textMinutes}}</option>
+          <option value="2" [selected]="presc.DistributionNumericParameter2 == 2">{{textHours}}</option>
+          <option value="3" [selected]="presc.DistributionNumericParameter2 == 3">{{textDays}}</option>
+          <option value="4" [selected]="presc.DistributionNumericParameter2 == 4">{{textWeeks}}</option>
+        </select>
+      </div>
+      <div *ngIf="presc.DistributionType == 102 || presc.DistributionType == 202 || presc.DistributionType == 302">
+        <span class="dialog-row-label dialog-light">{{textWithARateOf}}</span>
+        <select class="dialog-select" (change)="setNumericParameter(1,$event); setStringParameter(1,'asd'); setNumericParameter(3,0);">
+          <option value="0" [selected]="presc.DistributionNumericParameter1 == 0">{{textTotalDosage}}</option>
+          <option [value]="presc.Components[0]?.Drug" [selected]="presc.DistributionNumericParameter1 == presc.Components[0]?.Drug">{{presc.Components[0]?.Label}}</option>
+        </select>
+        <input [class.dialog-empty-mandatory]="(presc.DistributionNumericParameter2 ?? 0) == 0" class="dialog-number-input" type="number" min="0" [value]="presc.DistributionNumericParameter2" (change)="setNumericParameter(2,$event)" />
+        <span *ngIf="presc.DistributionType != 302 && allowFlowRange"> - </span>
+        <input [class.dialog-empty-mandatory]="(presc.DistributionNumericParameter7 ?? 0) == 0" class="dialog-number-input" type="number" min="0" *ngIf="presc.DistributionType != 302 && allowFlowRange" [value]="presc.DistributionNumericParameter7" (change)="setNumericParameter(7,$event)"/>
+        <select class="dialog-select" *ngIf="presc.DistributionNumericParameter1 == 0" disabled>
+          <option selected value="1">ml</option>
+        </select>
+        <select class="dialog-select" *ngIf="presc.DistributionNumericParameter1 != 0" [disabled]="mainCompUnitList.length == 1" (change)="setNumericParameter(3,$event)">
+          <option *ngFor="let unit of mainCompUnitList" [value]="getUnitValue(unit)" [selected]="getUnitValue(unit) == presc.NumericParameter3">{{unit}}</option>
+        </select>
+        <span class="dialog-row-label dialog-light">/</span>
+        <select class="dialog-select" (change)="setNumericParameter(4,$event)" [disabled]="noWeight">
+          <option [value]="0" [selected]="noWeight || presc.NumericParameter4 == 0"></option>
+          <option [value]="1" [selected]="!noWeight && presc.NumericParameter4 == 1">kg</option>
+          <option [value]="2" [selected]="!noWeight && presc.NumericParameter4 == 2">bsa</option>
+        </select>
+        <span class="dialog-row-label dialog-light">/</span>
+        <input [class.dialog-empty-mandatory]="(presc.DistributionNumericParameter5 ?? 0) == 0" class="dialog-number-input" type="number" min="0" [value]="presc.DistributionNumericParameter5" (change)="setNumericParameter(5,$event)" [class.hidden]="presc.DistributionNumericParameter5 == 1"/>
+        <select class="dialog-select" (change)="setNumericParameter(6,$event)">
+          <option value="1" [selected]="presc.DistributionNumericParameter6 == 1">{{textMinutes}}</option>
+          <option value="2" [selected]="presc.DistributionNumericParameter6 == 2">{{textHours}}</option>
+          <option value="3" [selected]="presc.DistributionNumericParameter6 == 3">{{textDays}}</option>
+          <option value="4" [selected]="presc.DistributionNumericParameter6 == 4">{{textWeeks}}</option>
+        </select>
+        <ng-container *ngIf="presc.DistributionType == 302">
+          <span class="dialog-row-label dialog-light">{{textInAPeriodOf}}</span>
+          <input class="dialog-number-input" type="number" min="0" [class.dialog-empty-mandatory]="(presc.DistributionNumericParameter7 ?? 0) == 0" [value]="presc.DistributionNumericParameter7" (change)="setNumericParameter(7,$event)" />
+          <select class="dialog-select" (change)="setNumericParameter(8,$event)">
+            <option value="1" [selected]="presc.DistributionNumericParameter8 == 1">{{textMinutes}}</option>
+            <option value="2" [selected]="presc.DistributionNumericParameter8 == 2">{{textHours}}</option>
+            <option value="3" [selected]="presc.DistributionNumericParameter8 == 3">{{textDays}}</option>
+            <option value="4" [selected]="presc.DistributionNumericParameter8 == 4">{{textWeeks}}</option>
+          </select>
+        </ng-container>
+      </div>
+      <div *ngIf="presc.DistributionType == 1 || presc.IntermittentSubType == 401">
+        <span class="dialog-row-label dialog-light">{{textSingleDose}}</span>
+      </div>
+      <div *ngIf="presc.DistributionType == 2 || presc.IntermittentSubType == 402">
+        <input class="dialog-number-input" type="number" min="0" [class.dialog-empty-mandatory]="presc.DistributionType == 2 ? (presc.DistributionNumericParameter1 ?? 0) == 0 : (presc.DistributionNumericParameter9 ?? 0) == 0" [value]="presc.DistributionType == 2 ? presc.DistributionNumericParameter1 : presc.DistributionNumericParameter9" (change)="setNumericParameter((presc.DistributionType == 2 ? 1 : 9),$event)" />
+        <span class="dialog-row-label dialog-light">{{textTimesPer24H}}</span>
+      </div>
+      <div *ngIf="presc.DistributionType == 3 || presc.IntermittentSubType == 403">
+        <span class="dialog-row-label dialog-light">{{textEvery}}</span>
+        <input class="dialog-number-input" type="number" min="0" [class.dialog-empty-mandatory]="presc.DistributionType == 3 ? (presc.DistributionNumericParameter1 ?? 0) == 0 : (presc.DistributionNumericParameter9 ?? 0) == 0" [value]="presc.DistributionType == 3 ? presc.DistributionNumericParameter1 : presc.DistributionNumericParameter9" (change)="setNumericParameter((presc.DistributionType == 3 ? 1 : 9),$event)" />
+        <select class="dialog-select" (change)="setNumericParameter((presc.DistributionType == 3 ? 2 : 10),$event)">
+          <option value="1" [selected]="presc.DistributionType == 3 ? presc.DistributionNumericParameter2 == 1 : presc.DistributionNumericParameter10 == 1">{{textMinutes}}</option>
+          <option value="2" [selected]="presc.DistributionType == 3 ? presc.DistributionNumericParameter2 == 2 : presc.DistributionNumericParameter10 == 2">{{textHours}}</option>
+          <option value="3" [selected]="presc.DistributionType == 3 ? presc.DistributionNumericParameter2 == 3 : presc.DistributionNumericParameter10 == 3">{{textDays}}</option>
+          <option value="4" [selected]="presc.DistributionType == 3 ? presc.DistributionNumericParameter2 == 4 : presc.DistributionNumericParameter10 == 4">{{textWeeks}}</option>
+        </select>
+      </div>
+      <div *ngIf="presc.DistributionType == 4 || presc.IntermittentSubType == 404">
+        <span class="dialog-row-label dialog-light">{{textPredefined}}</span>
+        <select #disType4Select class="dialog-select" (change)="setNumericParameter((presc.DistributionType == 4 ? 1 : 9),$event); setStringParameter((presc.DistributionType == 4 ? 2 : 3),'text'); setStringParameter((presc.DistributionType == 4 ? 1 : 2),getDistributionTimes($event))">
+         <!-- <option *ngFor="let distribution of distributionTimes | keyvalue" [value]="distribution.key" [selected]="presc.DistributionType == 4 ? presc.DistributionNumericParameter1 == distribution.key : presc.DistributionNumericParameter9 == distribution.key">{{distribution.value}}</option>-->
+          <option>min</option>
+          <option>hour</option>
+        </select>
+      </div>
+      <div *ngIf="presc.DistributionType == 5 || presc.DistributionType == 7 || presc.IntermittentSubType == 405">
+        <span class="dialog-row-label dialog-light" *ngIf="presc.DistributionType != 7">{{textToBeDefined}}</span>
+        <span class="dialog-row-label dialog-light" *ngIf="presc.DistributionType == 7">{{textFlexibleDosage}}</span>
+        <img src="../../../assets/Images/QCareButtonAdd.svg" (click)="editSelectedTimes()" />
+        <span class="dialog-row-text">{{translateSelectedTimes((presc.DistributionType <= 7 ? presc.DistributionStringParameter1 : presc.DistributionStringParameter2))}}</span>
+      </div>
+      <div *ngIf="presc.DistributionType == 6 || presc.IntermittentSubType == 406 || presc.DistributionType == 103 || presc.DistributionType == 203">
+        <span class="dialog-row-label dialog-light">{{textQuodSatis}}</span>
+        <input class="dialog-text-input half-width" [class.dialog-empty-mandatory]="presc.DistributionType == 406 ? (presc.DistributionStringParameter2 ?? '') == '' : (presc.DistributionStringParameter1 ?? '') == ''" type="text" [value]="presc.DistributionType == 406 ? presc.DistributionStringParameter2 : presc.DistributionStringParameter1" (change)="setStringParameter((presc.DistributionType == 406 ? 2 : 1),'qwe')"/>
+      </div>
+
+      <div class="dialog-line" *ngIf="presc.FlowRateString">
+        <span class="dialog-expected-flowrate">
+          <img src="../../../assets/Images/flowRate-addon.svg" />
+          <span>{{presc.FlowRateString}}</span>
+        </span>
+      </div>
+
+    </div>
+
+    <div *ngIf="prescMode == 1">
+      <div class="dialog-line">
+        <span class="dialog-row-label">{{textComponents}}</span>
+        <div class="clickable" *ngIf="presc.Components.length > 1 && presc.DistributionType != 7">
+          <img width="32" height="32" *ngIf="componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_closed.png" [title]="textUnLinkComponents" />
+          <img width="32" height="32" *ngIf="!componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_open.png" [title]="textLinkComponents"/>
+        </div>
+        </div>
+
+        <ng-container *ngIf="presc.DistributionType != 7">
+          <div class="dialog-line" *ngFor="let component of presc.Components">
+            <span class="dialog-component-label">{{component.Label}}</span>
+            <div (click)="changeDosageType(component)"><img src="../../../assets/Images/QCarePen.svg" /></div>
+            <ng-container *ngIf="component.DosageType == 1">
+              <input class="dialog-number-input" [class.dialog-empty-mandatory]="component.Dosage == null" type="number" min="0" [value]="component.Dosage" (change)="setCompDosage(component,$event)" />
+              <select class="dialog-select" (change)="setCompDosageUnit(component,$event)">
+                <option *ngFor="let unit of component.UnitList" [value]="getUnitValue(unit)" [selected]="getUnitValue(unit) == component.DosageUnit">{{unit}}</option>
+              </select>
+              <select class="dialog-select" (change)="setCompDosageRelativity(component,$event)" [disabled]="noWeight">
+                <option [value]="0" [selected]="noWeight || component.DosageRelativity == 0"></option>
+                <option [value]="1" [selected]="!noWeight && component.DosageRelativity == 1">kg</option>
+                <option [value]="2" [selected]="!noWeight && component.DosageRelativity == 2">bsa</option>
+              </select>
+            </ng-container>
+            <ng-container *ngIf="component.DosageType == 2">
+              <input class="dialog-text-input half-width" [value]="component.DosageQS" [placeholder]="textQSDosage" (keyup)="setCompQSDosage(component,$event)" />
+            </ng-container>
+            <select #administrationSelector class="dialog-select" *ngIf="presc.Components.indexOf(component) == 0" (change)="setAdministrationWay($event)">
+              <ng-container *ngIf="allowedAdministrationWaysLength > 0">
+                <option *ngFor="let administrationWay of presc.AllowedAdministrationWays | keyvalue" [value]="administrationWay.key" [selected]="administrationWay.key == presc.AdministrationWay">{{administrationWay.value}}</option>
+              </ng-container>
+              <ng-container *ngIf="allowedAdministrationWaysLength == 0">
+                <option *ngFor="let administrationWay of allAdministrationWays | keyvalue" [value]="administrationWay.key" [selected]="administrationWay.key == presc.AdministrationWay">{{administrationWay.value}}</option>
+              </ng-container>
+            </select>
+            <div class="dialog-remove-component">
+              <img class="dialog-trash-button" *ngIf="prescKey == null && presc.Components.indexOf(component) != 0" src="../../../assets/Images/TrashCan.svg" (click)="removeComp(component)" />
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="presc.DistributionType == 7">
+          <div *ngFor="let time of presc.DefinedTimes[-1]">
+            <span class="dialog-row-label dialog-light full-width">{{time}}</span>
+            <div class="dialog-line" *ngFor="let component of presc.Components">
+              <span class="dialog-component-label">{{component.Label}}</span>
+              <input class="dialog-number-input" [class.dialog-empty-mandatory]="(presc.FlexDosages['(' + component.Drug + ', ' + time + ')']?.Dosage ?? 0) == 0" type="number" min="0" [value]="presc.FlexDosages['(' + component.Drug + ', ' + time + ')']?.Dosage" (change)="setFlexDosage(time,component,$event)" />
+              <ng-container *ngIf="presc.DefinedTimes[-1].indexOf(time) == 0">
+                <select class="dialog-select" (change)="setCompDosageUnit(component,$event)">
+                  <option *ngFor="let unit of component.UnitList" [value]="getUnitValue(unit)" [selected]="getUnitValue(unit) == component.DosageUnit">{{unit}}</option>
+                </select>
+                <select class="dialog-select" (change)="setCompDosageRelativity(component,$event)" [disabled]="noWeight">
+                  <option [value]="0" [selected]="noWeight || component.DosageRelativity == 0"></option>
+                  <option [value]="1" [selected]="!noWeight && component.DosageRelativity == 1">kg</option>
+                  <option [value]="2" [selected]="!noWeight && component.DosageRelativity == 2">bsa</option>
+                </select>
+              </ng-container>
+              <ng-container *ngIf="presc.DefinedTimes[-1].indexOf(time) != 0">
+                <ng-container *ngFor="let unit of component.UnitList">
+                  <span class="dialog-row-label dialog-light" *ngIf="getUnitValue(unit) == component.DosageUnit">{{unit}}</span>
+                </ng-container>
+                <span class="dialog-row-label dialog-light" *ngIf="noWeight || component.DosageRelativity == 0"></span>
+                <span class="dialog-row-label dialog-light" *ngIf="!noWeight && component.DosageRelativity == 1">/kg</span>
+                <span class="dialog-row-label dialog-light" *ngIf="!noWeight && component.DosageRelativity == 2">/bsa</span>
+              </ng-container>
+              <select #administrationSelector class="dialog-select" *ngIf="presc.Components.indexOf(component) == 0 && presc.DefinedTimes[-1].indexOf(time) == 0" (change)="setAdministrationWay($event)">
+                <ng-container *ngIf="allowedAdministrationWaysLength > 0">
+                  <option *ngFor="let administrationWay of presc.AllowedAdministrationWays | keyvalue" [value]="administrationWay.key" [selected]="administrationWay.key == presc.AdministrationWay">{{administrationWay.value}}</option>
+                </ng-container>
+                <ng-container *ngIf="allowedAdministrationWaysLength == 0">
+                  <option *ngFor="let administrationWay of allAdministrationWays | keyvalue" [value]="administrationWay.key" [selected]="administrationWay .key== presc.AdministrationWay">{{administrationWay.value}}</option>
+                </ng-container>
+              </select>
+              <img *ngIf="prescKey == null && presc.Components.indexOf(component) != 0 && presc.DefinedTimes[-1].indexOf(time) == 0" src="../../../assets/Images/TrashCan.svg" (click)="removeComp(component)" />
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="needValidation">
+        <!--<validation-block></validation-block>-->
+      </div>
+
+      <div>
+        <textarea class="dialog-textarea full-width" maxlength="80" [value]="remark" [placeholder]="textComment" (keyup)="setRemark($event)"></textarea>
+      </div>
+
+      <div *ngIf="prescMode == 1">
+       <!-- <app-interaction-check></app-interaction-check>-->
+      </div>
+
+</ng-container>
+  <ng-container *ngIf="!loading && error">
+    <p class="error">{{ error }}</p>
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button *ngIf="prescMode == 1 && prescKey == null" mat-button (click)="addComponent()">{{textAddComponent}}</button>
+  <button mat-button (click)="closeDialog()">{{textCancel}}</button>
+  <button [disabled]="!validToSave()" class="save-button" mat-button (click)="save()">{{textSave}}</button>
+</div>

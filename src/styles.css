@@ -9,6 +9,13 @@
     box-sizing: border-box;
 }
 
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 
 
 /**   FOR DIALOGS   **/
@@ -201,7 +208,14 @@
   cursor: pointer;
   float: right;
 }
+
 .dialog-margin-left{
     margin-left: 12px;
+}
+
+
+/** DIALOG WERE MISSING */
+.full-width{
+  width: 100%;
 }
 

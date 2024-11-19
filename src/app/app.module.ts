@@ -8,11 +8,12 @@ import { ValidationBlockComponent } from './dialogs/validation-block/validation-
 import { MatDialogModule } from '@angular/material/dialog'
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from '@angular/common';
+import { PrescriptionDialogComponent } from './dialogs/prescription-dialog/prescription-dialog.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent
+    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent, PrescriptionDialogComponent
   ],
   imports: [
     CommonModule,

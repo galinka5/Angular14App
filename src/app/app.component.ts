@@ -2,6 +2,7 @@ import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ModuleNavigationComponent } from './module-navigation/module-navigation.component';
 import { DrugExecutionDialogComponent } from './dialogs/drug-execution-dialog/drug-execution-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PrescriptionDialogComponent } from './dialogs/prescription-dialog/prescription-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   test(){
-    const dialogRef = this.dialog.open(DrugExecutionDialogComponent, {});
+    const dialogRef = this.dialog.open(PrescriptionDialogComponent, {});
     dialogRef.afterClosed().subscribe();
   }
 }
