@@ -9,11 +9,12 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from '@angular/common';
 import { PrescriptionDialogComponent } from './dialogs/prescription-dialog/prescription-dialog.component';
+import { InteractionCheckComponent } from './dialogs/interaction-check/interaction-check.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent, PrescriptionDialogComponent
+    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent, PrescriptionDialogComponent, InteractionCheckComponent
   ],
   imports: [
     CommonModule,

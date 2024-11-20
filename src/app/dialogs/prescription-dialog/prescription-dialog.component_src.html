@@ -1,14 +1,11 @@
 
-<h2 mat-dialog-title>
-  <span class="prescription-header">{{ title }}</span>
-  <span class="interaction-warning" *ngIf="hasInterAction"><img class="interaction-image" src="../../../assets/Images/icon-blue.svg" />{{textInterAction}}</span>
-</h2>
+<h2 mat-dialog-title>{{ title }} <span class="interaction-warning" *ngIf="hasInterAction"><img class="interaction-image" src="../../../assets/Images/icon-blue.svg" />{{textInterAction}}</span></h2>
 <div mat-dialog-content>
   <ng-container *ngIf="loading">
     <p>Loading...</p>
   </ng-container>
   <ng-container *ngIf="loaded">
-    <div class="prescription-section">
+    <div>
       <div class="dialog-line">
         <span class="dialog-row-label">{{textStartDate}}</span>
         <input [class.dialog-empty-mandatory]="!presc.FromDateAsLocalTime" max="2999-12-31T23:59" class="dialog-datetime-input" type="datetime-local" [value]="presc.FromDateAsLocalTime" (change)="saveStartTime($event.target.value)" />
@@ -33,7 +30,7 @@
       </div>
     </div>
 
-    <div class="prescription-section">
+    <div>
       <div>
         <span class="dialog-row-label">{{textDistribution}}</span>
         <span class="dialog-clickable-link" (click)="openDistributionChange()">{{presc.DistributionAsText}}</span>
@@ -48,14 +45,14 @@
           <option value="4" [selected]="presc.DistributionNumericParameter2 == 4">{{textWeeks}}</option>
         </select>
       </div>
-      <div *ngIf="presc.DistributionType == 102 || presc.DistributionType == 202 || presc.DistributionType == 302" class="controls-container">
+      <div *ngIf="presc.DistributionType == 102 || presc.DistributionType == 202 || presc.DistributionType == 302">
         <span class="dialog-row-label dialog-light">{{textWithARateOf}}</span>
-        <select class="dialog-select max-width-300" (change)="setNumericParameter(1,$event.target.value); setStringParameter(1,$event.target.options[$event.target.selectedIndex].text); setNumericParameter(3,$event.target.value == '0' ? 0 :getUnitValue(mainCompUnitList[0]));">
+        <select class="dialog-select" (change)="setNumericParameter(1,$event.target.value); setStringParameter(1,$event.target.options[$event.target.selectedIndex].text); setNumericParameter(3,$event.target.value == '0' ? 0 :getUnitValue(mainCompUnitList[0]));">
           <option value="0" [selected]="presc.DistributionNumericParameter1 == 0">{{textTotalDosage}}</option>
           <option [value]="presc.Components[0]?.Drug" [selected]="presc.DistributionNumericParameter1 == presc.Components[0]?.Drug">{{presc.Components[0]?.Label}}</option>
         </select>
         <input [class.dialog-empty-mandatory]="(presc.DistributionNumericParameter2 ?? 0) == 0" class="dialog-number-input" type="number" min="0" [value]="presc.DistributionNumericParameter2" (change)="setNumericParameter(2,$event.target.value)" />
-        <span *ngIf="presc.DistributionType != 302 && allowFlowRange" class="dash"> - </span>
+        <span *ngIf="presc.DistributionType != 302 && allowFlowRange"> - </span>
         <input [class.dialog-empty-mandatory]="(presc.DistributionNumericParameter7 ?? 0) == 0" class="dialog-number-input" type="number" min="0" *ngIf="presc.DistributionType != 302 && allowFlowRange" [value]="presc.DistributionNumericParameter7" (change)="setNumericParameter(7,$event.target.value)"/>
         <select class="dialog-select" *ngIf="presc.DistributionNumericParameter1 == 0" disabled>
           <option selected value="1">ml</option>
@@ -114,7 +111,7 @@
       <div *ngIf="presc.DistributionType == 5 || presc.DistributionType == 7 || presc.IntermittentSubType == 405">
         <span class="dialog-row-label dialog-light" *ngIf="presc.DistributionType != 7">{{textToBeDefined}}</span>
         <span class="dialog-row-label dialog-light" *ngIf="presc.DistributionType == 7">{{textFlexibleDosage}}</span>
-        <img src="../../../assets/Images/QCareButtonAdd.svg" (click)="editSelectedTimes()" class="add-plus-button"/>
+        <img src="../../../assets/Images/QCareButtonAdd.svg" (click)="editSelectedTimes()" />
         <span class="dialog-row-text">{{translateSelectedTimes((presc.DistributionType <= 7 ? presc.DistributionStringParameter1 : presc.DistributionStringParameter2))}}</span>
       </div>
       <div *ngIf="presc.DistributionType == 6 || presc.IntermittentSubType == 406 || presc.DistributionType == 103 || presc.DistributionType == 203">
@@ -135,13 +132,13 @@
       <div class="dialog-line">
         <span class="dialog-row-label">{{textComponents}}</span>
         <div class="clickable" *ngIf="presc.Components.length > 1 && presc.DistributionType != 7">
-          <img width="20" height="20" *ngIf="componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_closed.svg" [title]="textUnLinkComponents" />
-          <img width="20" height="20" *ngIf="!componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_open.svg" [title]="textLinkComponents"/>
+          <img width="32" height="32" *ngIf="componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_closed.png" [title]="textUnLinkComponents" />
+          <img width="32" height="32" *ngIf="!componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_open.png" [title]="textLinkComponents"/>
         </div>
         </div>
 
         <ng-container *ngIf="presc.DistributionType != 7">
-          <div class="dialog-line components-section" *ngFor="let component of presc.Components">
+          <div class="dialog-line" *ngFor="let component of presc.Components">
             <span class="dialog-component-label">{{component.Label}}</span>
             <div (click)="changeDosageType(component)"><img src="../../../assets/Images/QCarePen.svg" /></div>
             <ng-container *ngIf="component.DosageType == 1">
@@ -175,7 +172,7 @@
         <ng-container *ngIf="presc.DistributionType == 7">
           <div *ngFor="let time of presc.DefinedTimes[-1]">
             <span class="dialog-row-label dialog-light full-width">{{time}}</span>
-            <div class="dialog-line components-section" *ngFor="let component of presc.Components">
+            <div class="dialog-line" *ngFor="let component of presc.Components">
               <span class="dialog-component-label">{{component.Label}}</span>
               <input class="dialog-number-input" [class.dialog-empty-mandatory]="(presc.FlexDosages['(' + component.Drug + ', ' + time + ')']?.Dosage ?? 0) == 0" type="number" min="0" [value]="presc.FlexDosages['(' + component.Drug + ', ' + time + ')']?.Dosage" (change)="setFlexDosage(time,component,$event.target.value)" />
               <ng-container *ngIf="presc.DefinedTimes[-1].indexOf(time) == 0">

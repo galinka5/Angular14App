@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   test(){
-    const dialogRef = this.dialog.open(PrescriptionDialogComponent, {});
+    const dialogRef = this.dialog.open(PrescriptionDialogComponent, {width:'50%'});
     dialogRef.afterClosed().subscribe();
   }
 }
