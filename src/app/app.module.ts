@@ -11,11 +11,13 @@ import { CommonModule } from '@angular/common';
 import { PrescriptionDialogComponent } from './dialogs/prescription-dialog/prescription-dialog.component';
 import { InteractionCheckComponent } from './dialogs/interaction-check/interaction-check.component';
 import { TimeSelectionDialog } from './dialogs/timeSelection-dialog/timeSelection-dialog.component';
+import { DistributionChangeDialog } from './dialogs/distributionChange-dialog/distributionChange-dialog.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent, PrescriptionDialogComponent, InteractionCheckComponent, TimeSelectionDialog
+    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent,
+    PrescriptionDialogComponent, InteractionCheckComponent, TimeSelectionDialog, DistributionChangeDialog
   ],
   imports: [
     CommonModule,

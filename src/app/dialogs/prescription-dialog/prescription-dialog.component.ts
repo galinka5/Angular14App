@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { TimeSelectionDialog } from '../timeSelection-dialog/timeSelection-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DistributionChangeDialog } from '../distributionChange-dialog/distributionChange-dialog.component';
 
 export class Prescription {
   FromDateAsLocalTime: any = '2024-11-19T12:00:00.00Z';
@@ -174,7 +175,10 @@ export class PrescriptionDialogComponent {
 
   setEndOfAdmission() {}
 
-  openDistributionChange() {}
+  openDistributionChange() {
+    const dialogRef = this.dialog.open(DistributionChangeDialog, {width:'50%', data:{distributionType:1, isDrug:true, hasMl:true}});
+    dialogRef.afterClosed().subscribe();
+  }
 
   setNumericParameter(num: number, value: any) {
     //const value = event.target.value;

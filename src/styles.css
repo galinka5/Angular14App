@@ -267,3 +267,8 @@ button, input, optgroup, select, textarea {
   width: 100%;
 }
 
+.list-item input[type=radio]{
+  width: 24px;
+  height: 24px;
+}
+

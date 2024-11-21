@@ -1,0 +1,71 @@
+
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>
+  <div class="main-div">
+    <div class="obligatory-div">
+      <div class="sub-div">
+        <span class="label">{{textAtTime}}</span>
+        <div>
+          <ul class="list">
+            <li class="list-item" [class.selected]="selectedDistributionType == 1" (click)="setDistribution(1)">{{textSingleDose}} <input type="radio" [checked]="selectedDistributionType == 1" /></li>
+            <li class="list-item" [class.selected]="selectedDistributionType == 2" (click)="setDistribution(2)">{{textXPer24H}}<input type="radio" [checked]="selectedDistributionType == 2" /></li>
+            <li class="list-item" [class.selected]="selectedDistributionType == 3" (click)="setDistribution(3)">{{textWithIntervalsOf}}<input type="radio" [checked]="selectedDistributionType == 3" /></li>
+            <li class="list-item" [class.selected]="selectedDistributionType == 4" (click)="setDistribution(4)">{{textPredefined}}<input type="radio" [checked]="selectedDistributionType == 4" /></li>
+            <li class="list-item" [class.selected]="selectedDistributionType == 5" (click)="setDistribution(5)">{{textToBeDefined}}<input type="radio" [checked]="selectedDistributionType == 5" /></li>
+            <li class="list-item" [class.selected]="selectedDistributionType == 6" (click)="setDistribution(6)">{{textQuodSatis}}<input type="radio" [checked]="selectedDistributionType == 6" /></li>
+            <li *ngIf="isDrug" class="list-item" [class.selected]="selectedDistributionType == 7" (click)="setDistribution(7)">{{textFlexibleDose}}<input type="radio" [checked]="selectedDistributionType == 7" /></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="optional-div">
+    <div class="sub-div" *ngIf="hasMl">
+      <span class="label">{{textInfusion}}</span>
+      <div>
+        <ul class="list">
+          <li class="list-item" [class.selected]="selectedDistributionType == 101" (click)="setDistribution(101)">{{textInAPeriodOf}} <input type="radio" [checked]="selectedDistributionType == 101" /></li>
+          <li class="list-item" [class.selected]="selectedDistributionType == 102" (click)="setDistribution(102)">{{textWithARateOf}}<input type="radio" [checked]="selectedDistributionType == 102" /></li>
+          <li class="list-item" [class.selected]="selectedDistributionType == 103" (click)="setDistribution(103)">{{textQuodSatis}}<input type="radio" [checked]="selectedDistributionType == 103" /></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-div" *ngIf="hasMl">
+      <span class="label">{{textPerfusion}}</span>
+      <div>
+        <ul class="list">
+          <li class="list-item" [class.selected]="selectedDistributionType == 201" (click)="setDistribution(201)">{{textInAPeriodOf}} <input type="radio" [checked]="selectedDistributionType == 201" /></li>
+          <li class="list-item" [class.selected]="selectedDistributionType == 202" (click)="setDistribution(202)">{{textWithARateOf}}<input type="radio" [checked]="selectedDistributionType == 202" /></li>
+          <li class="list-item" [class.selected]="selectedDistributionType == 203" (click)="setDistribution(203)">{{textQuodSatis}}<input type="radio" [checked]="selectedDistributionType == 203" /></li>
+        </ul>
+      </div>
+    </div>
+
+      <div class="sub-div" *ngIf="hasMl">
+        <span class="label">{{textShortTimeInfusion}}</span>
+        <div>
+          <ul class="list">
+            <li class="list-item" [class.selected]="selectedDistributionType == 301" (click)="setDistribution(301)">{{textInAPeriodOf}} <input type="radio" [checked]="selectedDistributionType == 301" /></li>
+            <li class="list-item" [class.selected]="selectedDistributionType == 302" (click)="setDistribution(302)">{{textWithARateOf}}<input type="radio" [checked]="selectedDistributionType == 302" /></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sub-div" *ngIf="hasMl">
+        <span class="label">{{textDistribution}}</span>
+        <div>
+          <ul class="list">
+            <li class="list-item" [class.disabled]="selectedDistributionType < 300" [class.selected]="selectedIntermittendType == 401" (click)="setSubType(401)">{{textSingleDose}} <input type="radio" [disabled]="selectedDistributionType < 300" [checked]="selectedIntermittendType == 401" /></li>
+            <li class="list-item" [class.disabled]="selectedDistributionType < 300" [class.selected]="selectedIntermittendType == 402" (click)="setSubType(402)">{{textXPer24H}}<input type="radio"  [disabled]="selectedDistributionType < 300" [checked]="selectedIntermittendType == 402" /></li>
+            <li class="list-item" [class.disabled]="selectedDistributionType < 300" [class.selected]="selectedIntermittendType == 403" (click)="setSubType(403)">{{textWithIntervalsOf}}<input type="radio"  [disabled]="selectedDistributionType < 300" [checked]="selectedIntermittendType == 403" /></li>
+            <li class="list-item" [class.disabled]="selectedDistributionType < 300" [class.selected]="selectedIntermittendType == 404" (click)="setSubType(404)">{{textPredefined}}<input type="radio"  [disabled]="selectedDistributionType < 300" [checked]="selectedIntermittendType == 404" /></li>
+            <li class="list-item" [class.disabled]="selectedDistributionType < 300" [class.selected]="selectedIntermittendType == 405" (click)="setSubType(4055)">{{textToBeDefined}}<input type="radio"  [disabled]="selectedDistributionType < 300" [checked]="selectedIntermittendType == 405" /></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">{{textCancel}}</button>
+</div>
