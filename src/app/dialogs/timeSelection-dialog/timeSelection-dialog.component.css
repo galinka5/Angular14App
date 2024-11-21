@@ -1,0 +1,183 @@
+.timeselector-outer {
+  display: flex;
+  color: var(--dialog-grey-label-color);
+  justify-content: space-between;
+}
+
+.timeselector-inner {
+    width: 35%;
+    padding: 10px;
+    position: relative;
+    flex: 1;
+}
+
+.timeselector-inner .dialog-row-text {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-weight: bold;
+}
+
+.timeselector-days {
+  border-radius: var(--field-border-radius);
+  border: 2px solid var(--field-border-color);
+  list-style: none;
+  margin-bottom: 0;
+  overflow: auto;
+  max-height: calc(100vh - 320px);
+  background: #fff;
+  margin-top: 18px;
+}
+
+  .timeselector-days li {
+    padding: 14px 18px;
+    color: var(--dialog-grey-label-color);
+    font-size: .875rem;
+    line-height: 1.35;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #B4B4B4;
+    position: relative;
+    word-break: break-word;
+    padding-right: 33px
+  }
+
+  .timeselector-days .short-dateinput{
+    width: 70%;
+    margin-right: 8px;
+  }
+
+.selected-option {
+  font-weight: 700;
+  background-color: #d7e9f9;
+}
+
+.timeselector-days input[type=checkbox] {
+  position: relative;
+  appearance: none;
+}
+
+  .timeselector-days input[type=checkbox]:before {
+    content: "";
+    display: block;
+    background-color: #666;
+    height: 25.5px;
+    border-radius: 25.5px;
+    width: 51px;
+  }
+
+
+  .timeselector-days input[type=checkbox]:after {
+    content: "";
+    display: block;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: .1s;
+  }
+
+  .timeselector-days input[type=checkbox]:checked::after {
+    left: 28px;
+  }
+
+  .timeselector-days input[type=checkbox]:checked::before {
+    background-color: #1D6CB8;
+  }
+
+  .timeselector-picker{
+    flex: 0;
+    justify-content: center;
+  }
+
+.timeselector-hour-picker,
+.timeselector-minute-picker,
+.timeselector-times-seperator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.previous-minute,
+.previous-hour,
+.next-minute,
+.next-hour {
+  cursor: pointer;
+  font-size: 40px;
+  margin: 0 5px;
+  opacity: .5;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.separator,
+.hour-input,
+.minute-input
+{
+  font-size: 80px;
+  background-color:transparent;
+  width: 100px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.separator{
+  width: 2vw;
+}
+
+.timeselector-add-div {
+  display: flex;
+  margin-left: 12px;
+}
+
+.timeselector-add-div>img {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+
+.timeselector-selected-times {
+  flex-direction: column;
+}
+
+.timeselector-selected-times-inner {
+  height: 95%;
+  background: #fff;
+  border-radius: var(--field-border-radius);
+  border: 2px solid var(--field-border-color);
+  padding: 8px;
+}
+
+.flex {
+  display: flex;
+}
+
+.selected-times-list > li {
+    list-style:none;
+}
+
+@media (max-width:1640px) {
+  .separator, .hour-input, .minute-input {
+    font-size: 48px;
+    width: 70px;
+    padding: 8px 0;
+ }
+
+ .separator{
+  width: 20px;
+ }
+
+  .previous-minute, .previous-hour, .next-minute, .next-hour {
+    font-size: 28px;
+  }
+
+  .timeselector-inner .dialog-row-label {
+    min-width: 50px
+  }
+}

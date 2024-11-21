@@ -1,0 +1,61 @@
+
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>
+  <div class="timeselector-outer">
+    <div *ngIf="!onlyDaily" class="timeselector-inner">
+      <ul class="timeselector-days">
+        <li (click)="selectDay(-1)" [class.selected-option]="selectedDays.has(-1)"><span class="dialog-row-label dialog-light">{{textDaily}}</span><input type="checkbox" [checked]="selectedDays.has(-1)" value="-1" /></li>
+        <li (click)="selectDay(2)" [class.selected-option]="selectedDays.has(2)"><span class="dialog-row-label dialog-light">{{textMonday}}</span><input type="checkbox" [checked]="selectedDays.has(2)" value="2" /></li>
+        <li (click)="selectDay(3)" [class.selected-option]="selectedDays.has(3)"><span class="dialog-row-label dialog-light">{{textTuesday}}</span><input type="checkbox" [checked]="selectedDays.has(3)" value="3" /></li>
+        <li (click)="selectDay(4)" [class.selected-option]="selectedDays.has(4)"><span class="dialog-row-label dialog-light">{{textWednesday}}</span><input type="checkbox" [checked]="selectedDays.has(4)" value="4" /></li>
+        <li (click)="selectDay(5)" [class.selected-option]="selectedDays.has(5)"><span class="dialog-row-label dialog-light">{{textThursday}}</span><input type="checkbox" [checked]="selectedDays.has(5)" value="5" /></li>
+        <li (click)="selectDay(6)" [class.selected-option]="selectedDays.has(6)"><span class="dialog-row-label dialog-light">{{textFriday}}</span><input type="checkbox" [checked]="selectedDays.has(6)" value="6" /></li>
+        <li (click)="selectDay(0)" [class.selected-option]="selectedDays.has(0)"><span class="dialog-row-label dialog-light">{{textSaturday}}</span><input type="checkbox" [checked]="selectedDays.has(0)" value="0" /></li>
+        <li (click)="selectDay(1)" [class.selected-option]="selectedDays.has(1)"><span class="dialog-row-label dialog-light">{{textSunday}}</span><input type="checkbox" [checked]="selectedDays.has(1)" value="1"/></li>
+        <li><input type="datetime-local" class="dialog-datetime-input short-dateinput" (change)="setDateTime($event.target.value)" /><img src="../../../../assets/Images/QCareButtonAdd.svg" (click)="addDateToSelection()" /></li>
+      </ul>
+    </div>
+
+    <div class="timeselector-inner flex timeselector-picker">
+      <div class="timeselector-hour-picker">
+        <span class="previous-hour" (click)="decrementHour()">{{previousHour.toString().padStart(2, '0')}}</span>
+        <input class="hour-input" type="number" min="0" max="23" disabled [value]="hour.toString().padStart(2, '0')" />
+        <span class="next-hour" (click)="incrementHour()">{{nextHour.toString().padStart(2, '0')}}</span>
+      </div>
+
+      <div class="timeselector-times-seperator">
+        <span class="separator">:</span>
+      </div>
+
+      <div class="timeselector-minute-picker">
+        <span class="previous-minute" (click)="decrementMinute()">{{previousMinute.toString().padStart(2, '0')}}</span>
+        <input class="minute-input" type="number" min="0" max="23" disabled [value]="minute.toString().padStart(2, '0')" />
+        <span class="next-minute" (click)="incrementMinute()">{{nextMinute.toString().padStart(2, '0')}}
+        </span>
+      </div>
+    </div>
+
+    <div class="timeselector-selected-times timeselector-inner">
+      <div class="dialog-row-text">
+        <span>{{textSelectedTimes}}</span>
+        <div class="timeselector-add-div"><img src="../../../../assets/Images/QCareButtonAdd.svg" (click)="addSelectedTime()" /></div>
+      </div>
+      <div class="timeselector-selected-times-inner">
+        <ng-container *ngFor="let day of selectedTimes | keyvalue">
+          <span class="dialog-row-label" *ngIf="day.value.length > 0">{{translateDay(day.key)}}</span>
+          <ul *ngIf="day.value.length > 0" class="selected-times-list">
+            <li class="dialog-row-label dialog-light" *ngFor="let time of day.value">
+              {{time}}
+              <img src="../../../../assets/Images/QCareRedCross.png" (click)="removeTime(day.key,time)" />
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Close</button>
+  <button mat-button class="save-button" (click)="save()">Save</button>
+</div>

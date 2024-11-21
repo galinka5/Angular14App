@@ -10,11 +10,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from '@angular/common';
 import { PrescriptionDialogComponent } from './dialogs/prescription-dialog/prescription-dialog.component';
 import { InteractionCheckComponent } from './dialogs/interaction-check/interaction-check.component';
+import { TimeSelectionDialog } from './dialogs/timeSelection-dialog/timeSelection-dialog.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent, PrescriptionDialogComponent, InteractionCheckComponent
+    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent, PrescriptionDialogComponent, InteractionCheckComponent, TimeSelectionDialog
   ],
   imports: [
     CommonModule,

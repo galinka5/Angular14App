@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TimeSelectionDialog } from '../timeSelection-dialog/timeSelection-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export class Prescription {
   FromDateAsLocalTime: any = '2024-11-19T12:00:00.00Z';
@@ -100,12 +102,14 @@ export class PrescriptionDialogComponent {
   presc!: Prescription;
   distributionTimes = { 1: 'hour', 2: 'minut' };
 
+  readonly dialog = inject(MatDialog);
+
   constructor() {
     this.presc = {
       FromDateAsLocalTime: '2024-11-19T12:00:00.00Z',
       TillDateAsLocalTime: '2024-12-19T16:00:00.00Z',
       TillEndOfAdmission: 0,
-      DistributionType: 202,
+      DistributionType: 7,
       DistributionAsText: 'asdasd',
       DistributionNumericParameter1: 1,
       DistributionStringParameter1: 1,
@@ -184,7 +188,10 @@ export class PrescriptionDialogComponent {
     return 0;
   }
 
-  editSelectedTimes() {}
+  editSelectedTimes() {
+    const dialogRef = this.dialog.open(TimeSelectionDialog, {width:'50%', data:{onlyDaily:false}});
+    dialogRef.afterClosed().subscribe();
+  }
 
   getDistributionTimes(event: any) {
     return '';
