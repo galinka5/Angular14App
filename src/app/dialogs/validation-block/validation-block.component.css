@@ -1,0 +1,56 @@
+.validation-div {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  align-items: normal;
+}
+
+.validation-remark {
+  resize: none;
+  color: var(--dialog-grey-field-color);
+  font-size: .875rem;
+  border-radius: 12px;
+  padding: 10px;
+  border: 2px solid var(--field-border-color);
+  flex-grow: 999;
+}
+
+.max-flex {
+    flex-grow: 999;
+}
+
+.validation-block-container{
+  gap:8px;
+  align-items: normal;
+}
+
+.validation-block-container .dialog-label-field{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.validation-block-container .dialog-label-field + .dialog-label-field{
+  margin-top: 8px;
+}
+
+.validation-block-container select{
+  max-width: 200px;
+}
+
+.validation-block-container .dialog-light{
+  line-height: 1;
+}
+
+.validation-block-container  .dialog-col-controls,
+.validation-block-container textarea{
+  max-width: 50%;
+}
+
+.no-wrap{
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

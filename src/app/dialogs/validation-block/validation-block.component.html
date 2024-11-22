@@ -1,1 +1,23 @@
-<p>validation-block works!</p>
+
+<div *ngIf="showValidation">
+  <div class="dialog-line">
+    <span class="dialog-row-label full-width">{{informationText}}</span>
+  </div>
+
+    <div class="dialog-line validation-block-container">
+      <div class="dialog-col-controls">
+        <div class="dialog-label-field">
+          <span class="dialog-row-label dialog-light med-name">{{reasonText}}</span>
+          <select class="dialog-select" (change)="setReason($event.target.value)">
+            <option *ngFor="let reason of prescriptionReasons" [value]="reason.key">{{reason.text}}</option>
+          </select>
+        </div>
+
+        <div class="dialog-label-field">
+          <span class="dialog-row-label dialog-light med-name">{{prescriptionForText}}</span>
+          <div class="dialog-number-input full-width no-wrap" [class.dialog-empty-mandatory]="(selectedDoctorKey ?? 0) == 0" (click)="openDoctorSelection()">{{selectedDoctor}}</div>
+        </div>
+      </div>
+      <textarea class="dialog-textarea max-flex" [placeholder]="remarkText" autocomplete="off" maxlength="80" (keyup)="setRemark($event.target.value)"></textarea>
+    </div>
+</div>

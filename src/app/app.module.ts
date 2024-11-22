@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ModuleNavigationComponent } from './module-navigation/module-navigation.component';
-import { DrugExecutionDialogComponent } from './dialogs/drug-execution-dialog/drug-execution-dialog.component';
-import { ValidationBlockComponent } from './dialogs/validation-block/validation-block.component';
+import { DrugExecutionDialog } from './dialogs/drugExecution-dialog/drugExecution-dialog.component';
+import { ValidationBlock } from './dialogs/validation-block/validation-block.component';
 import { MatDialogModule } from '@angular/material/dialog'
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from '@angular/common';
@@ -12,12 +12,14 @@ import { PrescriptionDialogComponent } from './dialogs/prescription-dialog/presc
 import { InteractionCheckComponent } from './dialogs/interaction-check/interaction-check.component';
 import { TimeSelectionDialog } from './dialogs/timeSelection-dialog/timeSelection-dialog.component';
 import { DistributionChangeDialog } from './dialogs/distributionChange-dialog/distributionChange-dialog.component';
+import { ValidationDoctorDialog } from './dialogs/validationDoctor-dialog/validationDoctor-dialog.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent, ModuleNavigationComponent, DrugExecutionDialogComponent, ValidationBlockComponent,
-    PrescriptionDialogComponent, InteractionCheckComponent, TimeSelectionDialog, DistributionChangeDialog
+    AppComponent, ModuleNavigationComponent,
+    PrescriptionDialogComponent, InteractionCheckComponent, TimeSelectionDialog, DistributionChangeDialog,
+    DrugExecutionDialog, ValidationDoctorDialog, ValidationBlock
   ],
   imports: [
     CommonModule,

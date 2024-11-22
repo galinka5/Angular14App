@@ -13,10 +13,10 @@ export class DComponent {
 
 @Component({
   selector: 'app-drug-execution-dialog',
-  templateUrl: './drug-execution-dialog.component.html',
-  styleUrls: ['./drug-execution-dialog.component.css'],
+  templateUrl: './drugExecution-dialog.component.html',
+  styleUrls: ['./drugExecution-dialog.component.css'],
 })
-export class DrugExecutionDialogComponent implements OnInit {
+export class DrugExecutionDialog implements OnInit {
   title = 'TITLE';
 
   loading: boolean = false;
@@ -32,7 +32,7 @@ export class DrugExecutionDialogComponent implements OnInit {
 
   isInfusion: boolean = false;
 
-  plannedDateAsLocalTime = 'plannedDateAsLocalTime';
+  plannedDateAsLocalTime = null;
 
   textPlannedDate = 'textPlannedDate';
 

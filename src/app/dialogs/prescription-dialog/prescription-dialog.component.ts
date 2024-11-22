@@ -110,7 +110,7 @@ export class PrescriptionDialogComponent {
       FromDateAsLocalTime: '2024-11-19T12:00:00.00Z',
       TillDateAsLocalTime: '2024-12-19T16:00:00.00Z',
       TillEndOfAdmission: 0,
-      DistributionType: 7,
+      DistributionType: 1,
       DistributionAsText: 'asdasd',
       DistributionNumericParameter1: 1,
       DistributionStringParameter1: 1,
@@ -153,7 +153,7 @@ export class PrescriptionDialogComponent {
 
       AllowedAdministrationWays: 1,
 
-      DefinedTimes: {"-1":12},
+      DefinedTimes: [{"-1":12}],
     };
   }
 
