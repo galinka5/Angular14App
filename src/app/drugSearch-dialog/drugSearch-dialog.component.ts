@@ -16,8 +16,8 @@ export class DrugSearchDialog implements OnInit {
   @ViewChild('drugFilter') drugFilterRef?: ElementRef<HTMLInputElement>;
 
   public title: string = TranslateText('Search medicine');
-  public loading: boolean = true;
-  public loaded: boolean = false;
+  public loading: boolean = false;
+  public loaded: boolean = true;
   public error: string = '';  // Add error handling
 
   public componentSelection: boolean = false;
@@ -31,7 +31,7 @@ export class DrugSearchDialog implements OnInit {
 
   public filterByDefaultPresc: boolean = false;
   public filterByFormularium: boolean = ['J', '1', 'Y', 'TRUE'].includes(GetParameter('QCARE', 'PHARMACY', 'ONLYFORMEQUIV'));
-  public HideKeyboard: boolean = ['J', '1', 'Y', 'TRUE'].includes(GetParameter('INTENSIVEPLUS', 'DRUGSEARCH', 'HIDEKEYBOARD') ?? ''.toUpperCase());
+  public HideKeyboard: boolean = true;//['J', '1', 'Y', 'TRUE'].includes(GetParameter('INTENSIVEPLUS', 'DRUGSEARCH', 'HIDEKEYBOARD') ?? ''.toUpperCase());
   public prescribeSubstance: boolean = ['J', '1', 'Y', 'TRUE'].includes(GetParameter('QCARE.NET', 'SUBSTANCEPRESCRIPTION', 'DRUGASSUBSTANCEBYDEFAULT'));
 
   public textPlaceHolder: string = TranslateText('Search medicine');
@@ -100,6 +100,7 @@ export class DrugSearchDialog implements OnInit {
       this.drugService.getSpecificDrugsAsComponents().then((response) => {
         this.fullDrugList = response;
         this.fullDrugList.forEach(x => {
+          console.log(x);
           if (!x.IsProfile && this.prescribeSubstance && x.SubstanceList.length > 0) {
             x.AsSubstance = true
           }

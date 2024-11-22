@@ -31,10 +31,20 @@ body{
   --button-secondary-bg-color:#fff;
   --button-secondary-text-color:#666;
   --button-secondary-border-color:#666;
+
+  --table-header-bg-color:#DDEFFF;
+  --table-subheader-bg-color:#bababa;
+  --table-even-row-color:#F0F5F9;
+  --table-header-text-color:#454545;
+  --table-body-text-color:#666;
 }
 
 .w-100{
   width: 100%!important;
+}
+
+.QCare_Hidden{
+  display: none!important;
 }
 
 button, input, optgroup, select, textarea {

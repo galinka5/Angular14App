@@ -3,7 +3,7 @@
 }
 
 .Drug_Selector {
-  background: #fff;
+  background: transparent;
   width: 100%;
   height: auto;
   min-height: 100%; /* Changed to contain within dialog height */
@@ -12,29 +12,13 @@
   flex-direction: column;
   /*flex-wrap: wrap;*/
   align-items: baseline;
-  padding: 40px 0 0;
+  padding: 0;
 }
 
 .Drug_List.selected {
-  max-height: 300px; /* Set a fixed max height for better containment */
+  max-height: calc(100vh - 700px); /* Set a fixed max height for better containment */
   margin-bottom: 0;
   padding-left: 26px;
-}
-
-.drug-selector-header {
-  background: #1D6CB8;
-  width: 100%;
-  height: 40px;
-  border-radius: 8px 8px 0 0;
-  color: #fff;
-  text-align: center;
-  line-height: 40px;
-  font-size: 20px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  position: relative;
 }
 
 .Drug_Selector .controls-container {
@@ -46,6 +30,7 @@
   padding: 20px;
   /*flex-wrap: wrap;*/
   box-sizing: border-box;
+  position: relative;
 }
 
 .Drug_Selector button.Return-Button {
@@ -66,7 +51,7 @@
 
   .Drug_Selector .toggle-group div {
     font-size: 1.625rem;
-    color: #666;
+    color: var(--field-border-color-dark);
     display: flex;
     padding: 0 16px;
     justify-content: flex-end;
@@ -92,7 +77,7 @@
     .substance_checkbox::before {
       content: '';
       display: block;
-      background-color: #666;
+      background-color: var(--field-border-color-dark);
       height: 51px;
       border-radius: 51px;
       width: 102px
@@ -119,7 +104,7 @@
 
     .Drug_Selector .toggle-group input[type="checkbox"]:checked::before,
     .substance_checkbox:checked::before {
-      background-color: #1D6CB8;
+      background-color:  var(--button-primary-bg-color);
     }
 
 
@@ -129,16 +114,16 @@
   height: 50px;
   display: block;
   background-image: url('data:image/svg+xml,<svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36.75 36.75L48 48M42.375 22.6875C42.375 33.5606 33.5606 42.375 22.6875 42.375C11.8144 42.375 3 33.5606 3 22.6875C3 11.8144 11.8144 3 22.6875 3C33.5606 3 42.375 11.8144 42.375 22.6875Z" stroke="%23D2D2D2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-  top: 56px;
+  top: 47px;
   position: absolute;
   left: calc(50% - 75px);
 }
 
 .Drug_Selector .controls-container input {
   border-radius: 14px;
-  border: 2px solid #8a8a8a;
-  background: #FFF;
-  color: #666;
+  border: 2px solid var(--field-border-color-dark);
+  background: var(--field-bg-color);
+  color: var(--dialog-grey-field-color);
   height: 95px;
   width: 50%;
   padding: 16px 32px;
@@ -156,8 +141,7 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
-  width: calc(100%-50px);
-  overflow-y: auto;
+  width: calc(100% - 50px);
 }
 
   .Drug_Selector .virtual-keyboard .letter-board {
@@ -175,10 +159,10 @@
   margin: 6px;
   font-size: 50px;
   font-weight: 700;
-  color: #666;
+  color: var(--button-secondary-text-color);
   background-color: #fff;
   border-radius: 8px;
-  border: 2px solid #bbb;
+  border: 2px solid var(--button-secondary-border-color);
   box-shadow: none;
   cursor: pointer;
   -webkit-user-select: none;
@@ -193,7 +177,11 @@
 
 .Drug_Selector .tables-container {
   display: flex;
-  padding: 0 31px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: var(--field-border-radius);
+  min-height: 100%;
+  flex:1;
 }
 
 .Drug_Selector .controls-container .virtual-keyboard > .keyboard-row:first-child {
@@ -233,7 +221,7 @@
       position: sticky;
       top: 0;
       z-index: 1;
-      background-color: #D7E9F9;
+      background-color: var(--table-header-bg-color);
     }
 
       .Drug_List table thead th:first-child {
@@ -263,56 +251,60 @@
 
   .Drug_List.selected thead tr:first-child th {
     color: #fff !important;
-    background-color: #1D6CB8;
-    font-size: 1.625rem !important;
+    background-color: var(--button-primary-bg-color);
+    font-size: 1.5rem !important;
     text-align: center;
     border-radius: 14px 14px 0 0;
   }
 
   .Drug_List table tbody tr {
     height: 74px;
-    border-bottom: 1px solid #CACACA;
+    border-bottom: 1px solid var(--field-border-color);
   }
 
   .Drug_List tbody > tr.Drug_List-button {
     display: table-row;
+    border:none;
   }
 
-  .Drug_List table tr:nth-child(even) {
-    background-color: #f5f5f5;
+  .Drug_List table tbody tr:nth-child(even) {
+    background-color: var(--table-even-row-color);
   }
 
-  .Drug_List table td, .Drug_List table th {
-    padding: 10px;
-    font-size: 1.625rem;
-    color: #666;
+  .Drug_List table th {
+    padding: 4px 8px;
+    color: var(--table-header-text-color);
     border: none;
     text-align: left;
     word-wrap: break-word;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
 
-.Save-Button {
-  bottom: 46px;
-  border-radius: 8px;
-  background: #1D6CB8;
-  font-size: 1.625rem;
-  padding: 11px 20px;
-  height: 58px;
-  box-sizing: border-box;
-  line-height: .5;
-  right: 0;
-  position: absolute;
-  margin: 0 32px;
-  color: #fff;
-}
+  .Drug_List table td{
+    padding: 4px 8px;
+    color: var(--table-header-body-color);
+    border: none;
+    text-align: left;
+    word-wrap: break-word;
+    font-size: 1.125rem;
+    font-weight: normal;
+  }
+
+  .Drug_List table th:first-child,
+  .Drug_List table td:first-child{
+    padding-left: 16px;
+  }
+
+  .Drug_List table tbody{
+    border:1px solid var(--field-border-color);
+  }
 
 .Drug_Selector.no-keyboard .Drug_List {
-  max-height: calc(100vh - 400px);
+  max-height: calc(100vh - 440px);
 }
 
 .Drug_Selector.no-keyboard .toggle-group {
-  top: 120px;
+  top: 0;
 }
 
 .Drug_Selector .toggle-group {
@@ -330,24 +322,22 @@
 
 
 @media (min-width:1700px) {
-
-
   .Drug_List {
-    max-height: 50vh;
+    max-height: calc(100vh - 700px);
   }
 
     .Drug_List.selected {
-      max-height: 50vh;
+      max-height: calc(100vh - 700px);
     }
 }
 
-@media (max-width:1500px) {
+@media (max-width:1600px) {
   .Drug_Selector .controls-container input {
     width: 100%;
   }
 
   .virtual-keyboard {
-    flex-direction: column-reverse !important;
+    flex-direction: column !important;
   }
 
   .Drug_Selector .controls-container .virtual-keyboard > .keyboard-row:first-child {
@@ -368,16 +358,12 @@
   }
 
   .Drug_List {
-    max-height: 200px;
+    max-height: calc(100vh - 787px);
   }
 
     .Drug_List.selected {
-      max-height: 200px;
+      max-height: calc(100vh - 787px);
     }
-
-  .Drug_Selector.no-keyboard .Drug_List {
-    max-height: calc(100% - 400px);
-  }
 
   .Drug_List table td,
   .Drug_List table th {

@@ -3,6 +3,7 @@ import { ModuleNavigationComponent } from './module-navigation/module-navigation
 import { MatDialog } from '@angular/material/dialog';
 import { PrescriptionDialog } from './dialogs/prescription-dialog/prescription-dialog.component';
 import { DrugExecutionDialog } from './dialogs/drugExecution-dialog/drugExecution-dialog.component';
+import { DrugSearchDialog } from './drugSearch-dialog/drugSearch-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -31,13 +32,19 @@ export class AppComponent implements OnInit {
 
   openPrescriptionDialog(){
     const dialogRef = this.dialog.open(PrescriptionDialog, {width:'50%'});
-    //const dialogRef = this.dialog.open(TimeSelectionDialog, {width:'50%', data:{onlyDaily:false}});
     dialogRef.afterClosed().subscribe();
   }
 
   openDrugExecutionDialog(){
     const dialogRef = this.dialog.open(DrugExecutionDialog, {width:'50%'});
-    //const dialogRef = this.dialog.open(TimeSelectionDialog, {width:'50%', data:{onlyDaily:false}});
+    dialogRef.afterClosed().subscribe();
+  }
+
+  openDrugSearchDialog(){
+    const dialogRef = this.dialog.open(DrugSearchDialog, {    width: 'calc(100% - 30px)', height: 'calc(100% - 30px)', maxWidth:"100%", data:{
+      componentSelection:true,
+      returnKeys:true
+    }});
     dialogRef.afterClosed().subscribe();
   }
 }
