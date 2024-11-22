@@ -19,8 +19,11 @@ body{
   --dialog-grey-field-color:#666;
   --dialog-bg-empty-mandatory:#ffff7e;
   --field-bg-color:#fff;
+
   --field-border-color:#bababa;
   --field-border-radius:6px;
+  --field-border-color-dark:#646464;
+
   --field-gap-margin-left:0.75rem;
   --button-primary-bg-color:#1c6db5;
   --button-primary-text-color:#fff;
@@ -28,6 +31,10 @@ body{
   --button-secondary-bg-color:#fff;
   --button-secondary-text-color:#666;
   --button-secondary-border-color:#666;
+}
+
+.w-100{
+  width: 100%!important;
 }
 
 button, input, optgroup, select, textarea {
@@ -61,6 +68,8 @@ button, input, optgroup, select, textarea {
   font-weight: 700!important;
   font-size: 20px!important;
   height: 54px;
+  display: flex;
+  align-items: center;
 }
 
 .mat-mdc-dialog-container .mat-mdc-dialog-title+.mat-mdc-dialog-content {
@@ -265,6 +274,20 @@ button, input, optgroup, select, textarea {
 /** DIALOG WERE MISSING */
 .full-width{
   width: 100%;
+}
+
+.list-item {
+  padding: 14px 18px;
+  color: var(--dialog-grey-label-color);
+  font-size: .875rem;
+  line-height: 1.35;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--field-border-color);
+  position: relative;
+  word-break: break-word;
+  padding-right: 33px;
 }
 
 .list-item input[type=radio]{

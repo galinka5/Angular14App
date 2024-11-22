@@ -43,20 +43,6 @@
   background: #fff;
 }
 
-.list-item {
-  padding: 14px 18px;
-  color: var(--dialog-grey-label-color);
-  font-size: .875rem;
-  line-height: 1.35;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--field-border-color);
-  position: relative;
-  word-break: break-word;
-  padding-right: 33px;
-}
-
 .radio-button {
   width: 25px;
   height: 25px;
