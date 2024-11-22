@@ -3,6 +3,11 @@ import { TimeSelectionDialog } from '../timeSelection-dialog/timeSelection-dialo
 import { MatDialog } from '@angular/material/dialog';
 import { DistributionChangeDialog } from '../distributionChange-dialog/distributionChange-dialog.component';
 
+export enum prescMode{
+  Profile = 1,
+  Drug = 2,
+}
+
 export class Prescription {
   FromDateAsLocalTime: any = '2024-11-19T12:00:00.00Z';
   TillDateAsLocalTime: any;
@@ -49,7 +54,7 @@ export class Prescription {
   templateUrl: './prescription-dialog.component.html',
   styleUrl: './prescription-dialog.component.css',
 })
-export class PrescriptionDialogComponent {
+export class PrescriptionDialog {
   loading = false;
   loaded = true;
   hasInterAction = true;

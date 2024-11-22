@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { ModuleNavigationComponent } from './module-navigation/module-navigation.component';
 import { MatDialog } from '@angular/material/dialog';
-import { PrescriptionDialogComponent } from './dialogs/prescription-dialog/prescription-dialog.component';
+import { PrescriptionDialog } from './dialogs/prescription-dialog/prescription-dialog.component';
 import { DrugExecutionDialog } from './dialogs/drugExecution-dialog/drugExecution-dialog.component';
 
 @Component({
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   openPrescriptionDialog(){
-    const dialogRef = this.dialog.open(PrescriptionDialogComponent, {width:'50%'});
+    const dialogRef = this.dialog.open(PrescriptionDialog, {width:'50%'});
     //const dialogRef = this.dialog.open(TimeSelectionDialog, {width:'50%', data:{onlyDaily:false}});
     dialogRef.afterClosed().subscribe();
   }

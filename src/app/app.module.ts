@@ -8,7 +8,7 @@ import { ValidationBlock } from './dialogs/validation-block/validation-block.com
 import { MatDialogModule } from '@angular/material/dialog'
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from '@angular/common';
-import { PrescriptionDialogComponent } from './dialogs/prescription-dialog/prescription-dialog.component';
+import { PrescriptionDialog } from './dialogs/prescription-dialog/prescription-dialog.component';
 import { InteractionCheckComponent } from './dialogs/interaction-check/interaction-check.component';
 import { TimeSelectionDialog } from './dialogs/timeSelection-dialog/timeSelection-dialog.component';
 import { DistributionChangeDialog } from './dialogs/distributionChange-dialog/distributionChange-dialog.component';
@@ -18,7 +18,7 @@ import { ValidationDoctorDialog } from './dialogs/validationDoctor-dialog/valida
 @NgModule({
   declarations: [
     AppComponent, ModuleNavigationComponent,
-    PrescriptionDialogComponent, InteractionCheckComponent, TimeSelectionDialog, DistributionChangeDialog,
+    PrescriptionDialog, InteractionCheckComponent, TimeSelectionDialog, DistributionChangeDialog,
     DrugExecutionDialog, ValidationDoctorDialog, ValidationBlock
   ],
   imports: [

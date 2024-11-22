@@ -1,0 +1,97 @@
+
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>
+  <ng-container *ngIf="loading">
+    <p>Loading...</p>
+  </ng-container>
+  <ng-container *ngIf="loaded">
+    <div class="Drug_Selector" [class.no-keyboard]="HideKeyboard">
+      <div class="controls-container">
+        <input #drugFilter type="text" placeholder={{textPlaceHolder}} (keyup)="filterSelection($event.target.value)">
+        <div class="virtual-keyboard" [class.QCare_Hidden]="HideKeyboard">
+          <div class="keyboard-row">
+            <!-- First row buttons -->
+            <button class="Drug_List-button" *ngFor="let key of keyboardRows[0]" [disabled]="!isButtonVisible(key)" (click)="addToSelector(key)">{{key}}</button>
+            <!-- Return button for the first row -->
+            <button class="Return-Button" [disabled]="!filterContent" (click)="removeFromSelector()">
+              <img src="../../assets/Images/back.png" />
+            </button>
+          </div>
+          <div class="letter-board">
+            <div *ngFor="let row of keyboardRows.slice(1); let i=index" class="keyboard-row">
+              <button class="Drug_List-button" *ngFor="let key of row" [disabled]="!isButtonVisible(key)" (click)="addToSelector(key)">{{key}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toggle-group">
+        <div><span>{{textFilterDefaultPrescription}}</span><input type="checkbox" (change)="filterDefaultPrescription()" /></div>
+        <div><span>{{textFilterFormularium}}</span><input type="checkbox" (change)="filterFormularium()" checked /></div>
+      </div>
+      <div class="tables-container">
+        <div class="Drug_List">
+          <table>
+            <thead>
+              <tr>
+                <th>{{textName}}</th>
+                <th>{{textType}}</th>
+                <th [class.QCare_Hidden]="componentSelection">{{textDefaultDef}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let drug of drugList" class="Drug_List-button" (click)="add_Drug(drug)">
+                <td>{{drug.Name}}</td>
+                <td>
+                  <ng-container *ngIf="drug.IsProfile; else substance">
+                    {{textProfile}}
+                  </ng-container>
+                  <ng-template #substance>
+                    <ng-container *ngIf="drug.DirectSubstance > 0; else drugName">
+                      {{textSubstance}}
+                    </ng-container>
+                    <ng-template #drugName>
+                      {{textDrug}}
+                    </ng-template>
+                  </ng-template>
+                </td>
+                <td [class.QCare_Hidden]="componentSelection">
+                  <ng-container *ngIf="drug.DefaultPrescriptions.length > 0">
+                    {{drug.DefaultPrescriptions}}
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="Drug_List selected">
+          <table>
+            <thead>
+              <tr><th [attr.colspan]="componentSelection ? 2 : 3">{{textSelectedDrugs}}</th></tr>
+              <tr>
+                <th [class.QCare_Hidden]="componentSelection">{{textSubstance}}</th>
+                <th [attr.colspan]="componentSelection ? 2:1">{{textName}}</th>
+                <th [class.QCare_Hidden]="componentSelection">{{textDefaultDef}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let drug of selectedList" class="Drug_List-button">
+                <td [class.QCare_Hidden]="componentSelection"><input #inputElement (change)="changeSubstanceToName(drug)" type="checkbox" class="substance_checkbox" [class.QCare_Hidden]="componentSelection || drug.IsProfile || drug.SubstanceList.length == 0" [checked]="!drug.IsProfile && prescribeSubstance && drug.SubstanceList.length > 0 " /></td>
+                <td (click)="remove_Drug(drug)" *ngIf="drug.AsSubstance; else drugNameBlock">{{drug.SubstanceList.join(' + ')}}</td>
+                <ng-template #drugNameBlock><td (click)="remove_Drug(drug)">{{drug.Name}}</td></ng-template>
+                <td [class.QCare_Hidden]="componentSelection" (click)="remove_Drug(drug)">
+                  <ng-container *ngIf="drug.DefaultPrescriptions.length > 0">
+                    {{drug.DefaultPrescriptions}}
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">{{textCancel}}</button>
+  <button mat-button (click)="save()" [disabled]="selectedList.length == 0">{{textSave}}</button>
+</div>
