@@ -13,7 +13,7 @@ import { InteractionCheckComponent } from './dialogs/interaction-check/interacti
 import { TimeSelectionDialog } from './dialogs/timeSelection-dialog/timeSelection-dialog.component';
 import { DistributionChangeDialog } from './dialogs/distributionChange-dialog/distributionChange-dialog.component';
 import { ValidationDoctorDialog } from './dialogs/validationDoctor-dialog/validationDoctor-dialog.component';
-import { DrugSearchDialog } from './drugSearch-dialog/drugSearch-dialog.component';
+import { DrugSearchDialog } from './dialogs/drugSearch-dialog/drugSearch-dialog.component';
 
 
 @NgModule({

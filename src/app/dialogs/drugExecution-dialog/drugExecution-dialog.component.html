@@ -9,7 +9,7 @@
       <div class="dialog-line">
         <span class="dialog-row-label">{{textExecDate}}</span>
         <input [class.dialog-empty-mandatory]="!execDateAsLocalTime" max="2999-12-31T23:59" class="dialog-datetime-input" type="datetime-local" [value]="execDateAsLocalTime" (change)="setStartDate($event.target.value)" />
-        <img [title]="textSetToLastEndDate" class="clickable" *ngIf="lastEndDateAsLocalTime != null" src="../../../assets/Images/filling-arrow.svg" (click)="setStartDate(lastEndDateAsLocalTime)" />
+        <img [title]="textSetToLastEndDate" class="clickable img-button" *ngIf="lastEndDateAsLocalTime != null" src="../../../assets/Images/filling-arrow.svg" (click)="setStartDate(lastEndDateAsLocalTime)" />
         <div *ngIf="plannedDateAsLocalTime != null && plannedDateAsLocalTime != execDateAsLocalTime">
           <span class="dialog-row-label dialog-margin-left">{{textPlannedDate}} : {{readablePlannedDate()}}</span>
         </div>
@@ -49,8 +49,8 @@
       <div class="dialog-line">
       <span class="dialog-row-label">{{textComponents}}</span>
       <div class="clickable" *ngIf="components.length > 1">
-        <img width="32" height="32" *ngIf="componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_closed.png" [title]="textUnLinkComponents" />
-        <img width="32" height="32" *ngIf="!componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_open.png" [title]="textLinkComponents" />
+        <img width="20" height="20" *ngIf="componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_closed.svg" [title]="textUnLinkComponents" />
+        <img width="20" height="20" *ngIf="!componentsLinked" (click)="changeComponentLinked()" src="../../../assets/Images/lock_open.svg" [title]="textLinkComponents" />
       </div>
            </div>
       <div class="dialog-line" *ngFor="let component of components">

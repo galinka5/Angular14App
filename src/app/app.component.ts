@@ -3,7 +3,7 @@ import { ModuleNavigationComponent } from './module-navigation/module-navigation
 import { MatDialog } from '@angular/material/dialog';
 import { PrescriptionDialog } from './dialogs/prescription-dialog/prescription-dialog.component';
 import { DrugExecutionDialog } from './dialogs/drugExecution-dialog/drugExecution-dialog.component';
-import { DrugSearchDialog } from './drugSearch-dialog/drugSearch-dialog.component';
+import { DrugSearchDialog } from './dialogs/drugSearch-dialog/drugSearch-dialog.component';
 
 @Component({
   selector: 'app-root',

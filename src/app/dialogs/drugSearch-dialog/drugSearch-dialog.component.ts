@@ -1,9 +1,9 @@
 import { ElementRef, ViewChild } from '@angular/core';
 import { Component, Inject, OnInit,} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { GetParameter,  TranslateText } from '../QCare/Helper';
-import { DrugService } from '../services/drug.service';
-import { PrescriptionDialog, prescMode } from '../dialogs/prescription-dialog/prescription-dialog.component';
+import { GetParameter,  TranslateText } from '../../QCare/Helper';
+import { DrugService } from '../../services/drug.service';
+import { PrescriptionDialog, prescMode } from '../prescription-dialog/prescription-dialog.component';
 
 
 @Component({

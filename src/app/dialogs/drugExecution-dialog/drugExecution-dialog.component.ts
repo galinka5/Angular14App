@@ -64,7 +64,14 @@ export class DrugExecutionDialog implements OnInit {
   noWeight = false;
 
   textComponents = 'textComponents';
-  components: DComponent[] = [];
+  components: DComponent[] = [{  NeedLOT:1,
+    DosageRelativity:2,
+    DosageQS: "sdf",
+    Label: "label",
+    Dosage: "dosage",
+    DosageUnit: "DosageUnit",
+    UnitList: [{ Key: 1, Label: "string" }],
+    LotNumbers:["lnumber"]}];
 
   componentsLinked = true;
   textUnLinkComponents = 'textUnLinkComponents';
