@@ -1,0 +1,25 @@
+
+<h2 mat-dialog-title>{{ title }}</h2>
+<div mat-dialog-content>
+  <ng-container *ngIf="loading">
+    <p>Loading...</p>
+  </ng-container>
+  <ng-container *ngIf="loaded">
+
+    <div *ngFor="let lot of LOTNumbers; let i = index; trackBy: trackByFn" class="dialog-line inline-container">
+        <button [disabled]="!lot" class="clickable icon-button" (click)="addNewLotSlot()">
+          <img src="../../../../assets/Images/QCarePlus.svg" />
+        </button>
+
+      <input maxlength="30" class="dialog-text-input flex-grow-1 dialog-margin-left" type="text" [(ngModel)]="LOTNumbers[i]" />
+      <button *ngIf="i !== 0" [disabled]="!lot" class="clickable dialog-margin-left" (click)="removeLOT(i)">
+        <img src="../../../../assets/Images/TrashCan.svg" />
+      </button>
+    </div>
+
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">{{textCancel}}</button>
+  <button class="save-button" mat-button (click)="saveLOTNumbers()">{{textSave}}</button>
+</div>

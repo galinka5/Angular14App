@@ -14,13 +14,14 @@ import { TimeSelectionDialog } from './dialogs/timeSelection-dialog/timeSelectio
 import { DistributionChangeDialog } from './dialogs/distributionChange-dialog/distributionChange-dialog.component';
 import { ValidationDoctorDialog } from './dialogs/validationDoctor-dialog/validationDoctor-dialog.component';
 import { DrugSearchDialog } from './dialogs/drugSearch-dialog/drugSearch-dialog.component';
+import { LOTSelctionDialog } from './dialogs/lotSelection-dialog/lotSelection-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent, ModuleNavigationComponent,
     PrescriptionDialog, InteractionCheckComponent, TimeSelectionDialog, DistributionChangeDialog,
-    DrugExecutionDialog, ValidationDoctorDialog, ValidationBlock, DrugSearchDialog
+    DrugExecutionDialog, ValidationDoctorDialog, ValidationBlock, DrugSearchDialog, LOTSelctionDialog
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PrescriptionDialog } from './dialogs/prescription-dialog/prescription-dialog.component';
 import { DrugExecutionDialog } from './dialogs/drugExecution-dialog/drugExecution-dialog.component';
 import { DrugSearchDialog } from './dialogs/drugSearch-dialog/drugSearch-dialog.component';
+import { LOTSelctionDialog } from './dialogs/lotSelection-dialog/lotSelection-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -45,6 +46,13 @@ export class AppComponent implements OnInit {
       componentSelection:true,
       returnKeys:true
     }});
+    dialogRef.afterClosed().subscribe();
+  }
+
+  openLotSelectionDialog(){
+    const dialogRef = this.dialog.open(LOTSelctionDialog, {width:'50%',
+      data:{LOTNumbers:['line1', 'line2']}
+    });
     dialogRef.afterClosed().subscribe();
   }
 }
